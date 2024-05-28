@@ -44,3 +44,9 @@ Route::get('/customers', [App\Http\Controllers\admin\AdminController::class, 'Cu
 
 Route::get('/orders', [App\Http\Controllers\admin\AdminController::class, 'Orders'])->name('orders');
 });
+
+
+
+use App\Http\Controllers\bookDetailController;
+
+Route::get('/bookDetail/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail']);

@@ -1,0 +1,416 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=League+Spartan:wght@300&display=swap');
+
+:root{
+  /*========== Colors ==========*/
+
+  --main-color: hsl(302, 60%, 33%);
+  --main-color-alt: hsl(301, 59%, 23%);
+  --main-color-dark: #462e74;
+  --main-color-light: rgba(204, 148, 213, 1);
+  --main-color-lighter: hsl(314, 60%, 62%);
+
+  --second-color: rgba(247, 233, 161, 1);
+  --second-color-dark: #da800a;
+  
+  --third-color: rgba(9, 177, 171, 1);
+
+  --fourth-color:hsl(30, 100%, 82%);
+  --fourth-color-dark:hsl(14, 91%, 50%);
+  --fourth-color-dark-alt:hsl(14, 91%, 45%);
+
+  --white-color: hsl(0, 0%, 100%);
+  --dark-color: hsl(0, 8%, 28%);
+
+  --light-bg:#eee;
+  --black:#2c3e50;
+  --border:.1rem solid rgba(0,0,0,.2);
+
+  /*========== Font and typography ==========*/
+  --body-font: "League Spartan", sans-serif;
+  --second-font: "Fredoka", sans-serif;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+*{
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; 
+    border:none;
+    text-decoration: none;
+}
+
+body{
+    font-family: var(--body-font);
+}
+
+a{
+    text-decoration: none;
+}
+
+ul, li{
+    text-decoration: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/*=================MAIN ================*/
+.main{
+    overflow: hidden;
+    background-color: var(--main-color);
+ }
+ 
+ /*======================================*/
+ 
+ .section_title{
+    text-align: center;
+    font-family: var(--second-font);
+ }
+/*===============  INTRO ===============*/
+.intro{
+    .title{
+       color: var(--second-color);
+       font-family: var(--second-font);
+    }
+    .subtitle{
+       font-weight: normal;
+       color: var(--white-color);
+    }
+    .row{
+        background-color: var(--main-color);
+    }
+    
+ }
+ .book-price
+ {
+    font-family: var(--second-font) ;
+    color: var(--main-color-lighter);
+ }
+ .quantity-container{
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+.quantity-button {
+    text-align: center;
+    background-color: var(--main-color-light);
+    color: var(--white-color);   
+}
+.quantity-input:hover{
+    background-color: var(--main-color-lighter);
+}
+.quantity-input{
+    background-color:var(--main-color-light);
+    color: var(--white-color);
+    text-align: center;
+    font-weight: bold;
+}
+/* Loại bỏ các mũi tên tăng giảm mặc định trong các trình duyệt Webkit */
+.quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+ .cart-btn{
+    background-color: var(--main-color);
+    color: var(--white-color);
+    border-radius: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border: 0.1rem solid var(--second-color);
+ }
+ .buy-btn{
+    background-color: var(--second-color);
+    font-weight: bold;
+    border-radius: 0.8rem;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: 0.1rem solid var(--second-color);
+ }
+.cart-btn:hover{
+    background-color: var(--main-color-light);
+    font-weight: bold;
+    color: var(--black);
+}
+.buy-btn:hover{
+    background-color: var(--main-color-light);
+
+}
+*{
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; 
+   border:none;
+   text-decoration: none;
+}
+.book-img{
+  
+   transition: .3s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   z-index:99%;
+}
+.book-img img{
+    display: block;
+    height: 800px;
+    width: 400px;
+   min-width: 100%;
+   min-height: 100%;
+}
+
+.product-img{
+    background-color: var(--main-color);
+   transition: .3s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   
+   
+}
+.product-img img{
+    display: block;
+    width: 120px;
+    height:250px;
+    min-width: 100%;
+    min-height: 100%;
+}
+.product-img img:hover{
+    background-color: var(--second-color);
+}
+.info{
+    color: var(--white-color);
+    font-weight: bold;
+}
+.info span{
+    font-weight: normal;
+}
+body{
+   font-family: var(--body-font);
+}
+
+
+ul, li{
+   text-decoration: none;
+   list-style-type: none;
+}
+
+img{
+   max-width: 100%;
+   height: auto;
+   object-fit: cover;
+}
+
+/*===============  GENRES ===============*/
+.genres{
+    .container{
+       background-color: var(--light-bg);
+       border-radius: .5rem;
+    }
+    .row{
+       align-items: center;
+       justify-content: space-between;
+       text-align: center;
+    } 
+    .col {display: flex;
+        align-items: center;
+        justify-content: center;} 
+    .book_item{
+    background: var(--light-bg);
+    border-radius: .75rem;
+    transition:box-shadow .35s ease;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+ } 
+ 
+ .book_item:hover{
+    box-shadow:0px 0px 10px rgba(24, 24, 24, 0.3);
+ }
+ 
+ .book_img{
+    height: 200px;
+    margin-bottom: .75rem;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+ 
+  .book_img img{
+    display: block;
+    max-width: 200px;
+    max-height: 100%;
+  }
+ 
+  .book_info{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .products .book_price{
+    margin-bottom: .75rem;
+  }
+ 
+  .book_img img{
+    display: block;
+    max-width: 200px;
+    max-height: 100%;
+  }
+  .book_title a{ color : black;}  
+ }
+ 
+
+ .section_title{
+    font-family: var(--first-font) ;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: bold;
+ }
+
+ .hr1{
+    width: 12rem;
+    height:0.3rem;
+    border-width:0;
+    background-color: var(--second-color-dark);
+}
+ .genres_img{
+    background-color: transparent;
+    border-radius: .5rem;
+    max-width: 150px;
+    max-height: 190px;
+    overflow: hidden;
+ 
+    height: 100%;
+ }
+ 
+ .genres_img img{
+    height: 100%;
+    object-fit: cover;
+    border-radius: .5rem;
+ }
+ 
+ .genres_img{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .7s, box-shadow .8s;
+ }
+ 
+ .genres_img:hover{
+    transform: scale(1.15);
+    box-shadow:0px 0px 10px rgba(24, 24, 24, 0.3);
+ }
+ 
+ .genres_name{
+    font-weight: bold;
+    color: var(--dark-color);
+ }
+ 
+ .genres_name:hover{
+    color: var(--fourth-color-dark-alt);
+ }
+
+ /*===============  INFORMATION ===============*/
+.information{
+    .container{
+       background-color: var(--light-bg);
+       border-radius: .5rem;
+    }
+        hr{
+            
+            height:0.3rem;
+            border-width:0;
+            background-color: var(--second-color-dark);
+        }
+    
+    .hr2 {
+        width: 8rem;
+        height: 0.1em;
+        background-color: gray ;
+    }
+    
+}
+.reminder a{
+    color:black;
+    text-decoration: underline;
+}
+.reminder a:hover
+{ color: #da800a;}
+
+
+/*=============== REVIEW ===============*/
+.review{
+    .container{
+       background-color: var(--light-bg);
+       border-radius: 0.5rem;
+    }
+    
+    .point{
+        text-align: center;
+        font-family: var(--second-font);
+        color:var(--third-color);
+       
+    }
+    .rate_detail{
+        font-weight: bold;
+    }
+    .reminder
+    {
+        
+        text-align: center;
+    }
+    a{
+        text-decoration: underline;
+    }
+    .hr3{
+        height: 0.1em;
+        background-color: gray ;
+    }
+    .customer_1{
+        display: flex;
+    }
+    .customer-info{
+        
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .avatar{
+        max-width: 80px;
+        max-height: 80px;
+        border-radius: 50%;
+       
+    }
+    .name{
+        font-size:1.5rem ;
+        font-weight: bold;
+        
+    }
+        hr{
+            
+            height:0.3rem;
+            border-width:0;
+            background-color: var(--second-color-dark);
+        }
+    
+    .hr2 {
+        width: 8rem;
+        height: 0.1em;
+        background-color: gray ;
+    }
+}
