@@ -108,11 +108,21 @@
 
             </ul>
             <div class = "ms-3 fs-5 roboto-regular-italic purple justify-content-end d-flex">
-                {{15* ($orders->currentPage()-1)+count($orders) }} of {{$size }}
+                {{15* ($orders->currentPage()-1)+count($orders) }} of {{$size}}
                 Orders
             </div>
 
         </nav>
     </div>
 
+    <script>
+        const rows = document.querySelectorAll('table tr');
+
+        rows.forEach(row => {
+            row.addEventListener('click', () => {
+                const orderId = row.cells[0].textContent; // Lấy CUSTOMER_ID từ cột đầu tiên
+                window.location.href = `{{ route('orders.show', ['order' => '__ORDER_ID__']) }}`.replace('__ORDER_ID__', orderId.slice(4));
+            });
+        });
+    </script>
 @endsection

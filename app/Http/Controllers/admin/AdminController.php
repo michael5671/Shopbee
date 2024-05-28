@@ -20,8 +20,12 @@ class AdminController extends Controller
         $size=count(DB::table('order')->get());
         return view('Admin.Orders',['orders'=>$orders,'size'=>$size]);
     }
-    public function CustomerContext(Customer $customer)
+    public function CustomerContext($customer)
     {
-        return view('customers.show', compact('customer'));
+        return view('admin/CustomerContext', compact('customer'));
+    }
+    public function OrderContext($order)
+    {
+        return view('admin/CustomerContext', compact('order'));
     }
 }

@@ -50,6 +50,7 @@
                         </svg>
                         Joining Date
                     </th>
+
                 </tr>
                 </thead>
                 <tbody class = "roboto-regular">
@@ -60,6 +61,7 @@
                         <td>{{$customer->ADDRESS}}, {{$customer->CITY}}</td>
                         <td>02</td>
                         <td>{{$customer->JOINING_DATE}}</td>
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -98,4 +100,14 @@
 
         </nav>
         </div>
+    <script>
+        const rows = document.querySelectorAll('table tr');
+
+        rows.forEach(row => {
+                              row.addEventListener('click', () => {
+                              const customerId = row.cells[0].textContent; // Lấy CUSTOMER_ID từ cột đầu tiên
+                          window.location.href = `{{ route('customers.show', ['customer' => '__CUSTOMER_ID__']) }}`.replace('__CUSTOMER_ID__', customerId);
+           });
+        });
+    </script>
 @endsection
