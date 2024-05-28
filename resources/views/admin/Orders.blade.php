@@ -82,8 +82,37 @@
             </tbody>
         </table>
     </div>
-    <div class = "ms-3 fs-5 roboto-regular-italic purple justify-content-end d-flex">
-        {{count($orders)}} Orders in Total
+    <div class="align-items-end mt-auto">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end"> {{-- Thêm justify-content-center để căn giữa --}}
+                {{-- Liên kết đến trang trước --}}
+                @if ($orders->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $orders->previousPageUrl() }}">Previous</a></li>
+                @endif
+
+                {{-- Các liên kết đến các trang --}}
+                @foreach ($orders->getUrlRange(1, $orders->lastPage()) as $page => $url)
+                    <li class="page-item {{ $orders->currentPage() == $page ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                {{-- Liên kết đến trang sau --}}
+                @if ($orders->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $orders->nextPageUrl() }}">Next</a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                @endif
+
+            </ul>
+            <div class = "ms-3 fs-5 roboto-regular-italic purple justify-content-end d-flex">
+                {{15* ($orders->currentPage()-1)+count($orders) }} of {{$size }}
+                Orders
+            </div>
+
+        </nav>
     </div>
 
 @endsection

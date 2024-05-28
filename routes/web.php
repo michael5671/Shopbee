@@ -40,5 +40,7 @@ Route::get('/dashboard', function () {
     return view('admin.Dashboard');
 })->name('dashboard');
 Route::get('/customers', [App\Http\Controllers\admin\AdminController::class, 'Customers'])->name('customers');
+    Route::get('/customers/{customer}', [\App\Http\Controllers\admin\AdminController::class, 'show'])->name('customers.show');
+
 Route::get('/orders', [App\Http\Controllers\admin\AdminController::class, 'Orders'])->name('orders');
 });

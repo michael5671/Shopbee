@@ -14,7 +14,7 @@
                 <input type="text" class="form-control" placeholder="Search...">
             </div>
         </div>
-        <div class = "table-responsive mt-2">
+        <div class = "table-responsive mt-2 flex-grow-1">
             <table class="table ">
                 <thead class ="roboto-medium">
                 <tr>
@@ -64,9 +64,38 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
-        <div class = "ms-3 fs-5 roboto-regular-italic purple justify-content-end d-flex">
-            {{count($customers)}} Customers in Total
-        </div>
 
+        </div>
+        <div class="align-items-end mt-auto">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end"> {{-- Thêm justify-content-center để căn giữa --}}
+                {{-- Liên kết đến trang trước --}}
+                @if ($customers->onFirstPage())
+                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $customers->previousPageUrl() }}">Previous</a></li>
+                @endif
+
+                {{-- Các liên kết đến các trang --}}
+                @foreach ($customers->getUrlRange(1, $customers->lastPage()) as $page => $url)
+                    <li class="page-item {{ $customers->currentPage() == $page ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endforeach
+
+                {{-- Liên kết đến trang sau --}}
+                @if ($customers->hasMorePages())
+                    <li class="page-item"><a class="page-link" href="{{ $customers->nextPageUrl() }}">Next</a></li>
+                @else
+                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                @endif
+
+            </ul>
+            <div class = "ms-3 fs-5 roboto-regular-italic purple justify-content-end d-flex">
+                {{15* ($customers->currentPage()-1)+count($customers) }} of {{$size }}
+                Customers
+            </div>
+
+        </nav>
+        </div>
 @endsection

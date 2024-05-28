@@ -14,6 +14,10 @@ class Customer extends Model implements Authenticatable
     public $timestamps = false;
     protected $primaryKey = 'CUSTOMER_ID';
 
+    public static function paginate(int $int)
+    {
+    }
+
 
     public function getAuthIdentifierName()
     {
