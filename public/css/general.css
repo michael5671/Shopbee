@@ -1,0 +1,13 @@
+.background-purple{
+    background: #842180;
+}
+.content-width{
+    min-width: 1000px;
+}
+.card{
+    width: 100%;
+}
+.input-group{
+    max-width: 400px;
+    border: 2px #DBDBDB;
+}
