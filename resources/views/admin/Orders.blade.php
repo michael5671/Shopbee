@@ -58,13 +58,14 @@
                     </svg>
                     Payment Status
                 </th>
+                <th></th>
             </tr>
             </thead>
             <tbody class = "roboto-regular ">
                 @foreach($orders as $order)
                     <tr>
 
-                    <td>#ORD{{$order->ORDER_ID}}</td>
+                    <td>#ORD00{{$order->ORDER_ID}}</td>
                 <td>{{$order->CUSTOMER_ID}}</td>
                 <td>{{$order->ORDER_DATE}}</td>
                 <td>{{$order->TOTAL_PRICE}}</td>
@@ -76,7 +77,6 @@
                         <span class="badge text-bg-danger" style="width: 60px">Unpaid</span>
                 @endif
                         </td>
-                    </tr>
 
                 @endforeach
             </tbody>
@@ -121,7 +121,7 @@
         rows.forEach(row => {
             row.addEventListener('click', () => {
                 const orderId = row.cells[0].textContent; // Lấy CUSTOMER_ID từ cột đầu tiên
-                window.location.href = `{{ route('orders.show', ['order' => '__ORDER_ID__']) }}`.replace('__ORDER_ID__', orderId.slice(4));
+                window.location.href = `{{ route('orders.show', ['order_id' => '__ORDER_ID__']) }}`.replace('__ORDER_ID__', orderId.slice(4));
             });
         });
     </script>

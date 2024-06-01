@@ -35,15 +35,13 @@ Route::get('/test',[\App\Http\Controllers\test::class,'index']);
 
 Route::prefix('admin')->middleware(\App\Http\Middleware\MainAuthenticate::class)->group(function () {
     Route::get('/', function () {
-        return view('admin.Dashboard');
+        return redirect('/admin/dashboard');
     })->name('dashboard');
-    Route::get('/dashboard', function () {
-        return view('admin.Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\admin\AdminController::class,'Dashboard'])->name('dashboard');
     Route::get('/customers', [App\Http\Controllers\admin\AdminController::class, 'Customers'])->name('customers');
     Route::get('/customers/{customer}', [\App\Http\Controllers\admin\AdminController::class, 'CustomerContext'])->name('customers.show');
     Route::get('/orders', [App\Http\Controllers\admin\AdminController::class, 'Orders'])->name('orders');
-    Route::get('/orders/{order}', [\App\Http\Controllers\admin\AdminController::class, 'OrderContext'])->name('orders.show');
+    Route::get('/orders/{order_id}', [\App\Http\Controllers\admin\AdminController::class, 'OrderContext'])->name('orders.show');
 });
 
 

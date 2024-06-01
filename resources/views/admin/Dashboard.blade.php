@@ -10,12 +10,16 @@
             <div class="col">
                 <div class="card sales-card background-purple white">
                     <div class="card-body d-flex flex-column ">
-                        <h6 class="card-title roboto-regular">Total sales</h6>
-                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">22.772.202 VND
+                        <h6 class="card-title roboto-regular">Total sales this month</h6>
+                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">{{$formatter->formatCurrency($totalSales,'VND')}}
                         </div>
                         <div class="align-self-center">
-                            <span class="badge text-bg-success">+3.5tr</span>
-                            <span class="sales-period">Since last month</span>
+                            @if($totalSalesCompare>0)
+                            <span class="badge text-bg-success">{{$formatter->formatCurrency($totalSalesCompare,'VND')}}</span>
+                                @else
+                                <span class="badge text-bg-danger">{{$formatter->formatCurrency($totalSalesCompare,'VND')}}</span>
+                            @endif
+                            <span class="sales-period">Compared to last month</span>
                         </div>
                     </div>
                 </div>
@@ -23,12 +27,16 @@
             <div class="col">
                 <div class="card sales-card background-purple white">
                     <div class="card-body d-flex flex-column ">
-                        <h6 class="card-title roboto-regular">Total sales</h6>
-                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">22.772.202 VND
+                        <h6 class="card-title roboto-regular">Total orders this month</h6>
+                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">{{$totalOrders}}
                         </div>
                         <div class="align-self-center">
-                            <span class="badge text-bg-success sales-increase">+3.5tr</span>
-                            <span class="sales-period">Since last month</span>
+                            @if($totalOrdersCompare>0)
+                                <span class="badge text-bg-success">{{$totalOrdersCompare}} Orders</span>
+                            @else
+                                <span class="badge text-bg-danger">{{$totalOrdersCompare}} Orders</span>
+                            @endif
+                            <span class="sales-period">Compared to last month</span>
                         </div>
                     </div>
                 </div>
@@ -36,28 +44,44 @@
             <div class="col">
                 <div class="card sales-card background-purple white">
                     <div class="card-body d-flex flex-column ">
-                        <h6 class="card-title roboto-regular">Total sales</h6>
-                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">22.772.202 VND
+                        <h6 class="card-title roboto-regular">Total customer this month</h6>
+                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">{{$totalCustomers}}
                         </div>
                         <div class="align-self-center">
-                            <span class="badge text-bg-success sales-increase">+3.5tr</span>
-                            <span class="sales-period">Since last month</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card sales-card background-purple white">
-                    <div class="card-body d-flex flex-column ">
-                        <h6 class="card-title roboto-regular">Total sales</h6>
-                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">22.772.202 VND
-                        </div>
-                        <div class="align-self-center">
-                            <span class="badge text-bg-success sales-increase">+3.5tr</span>
-                            <span class="sales-period">Since last month</span>
+                            @if($totalCustomersCompare>=0)
+                                <span class="badge text-bg-success">{{$totalCustomersCompare}} Customers</span>
+                            @else
+                                <span class="badge text-bg-danger">{{$totalCustomersCompare}} Customers</span>
+                            @endif
+                            <span class="sales-period">Compared to last month</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            const ctx = document.getElementById('myChart');
+            const options = {
+                plugins: {
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            };
+
+            // Tạo biểu đồ
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: @json($data),
+                options: options
+            });
+
+        </script>
 @endsection
