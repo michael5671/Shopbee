@@ -2,4 +2,5 @@
 @section('title', 'Customers')
 @section('content')
 hihi
+
 @endsection
