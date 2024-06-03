@@ -49,3 +49,7 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\MainAuthenticate::class)
 use App\Http\Controllers\bookDetail\bookDetailController;
 
 Route::get('/bookDetail/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail']);
+
+
+use App\Http\Controllers\homeController;
+Route::get('/', [homeController::class, 'home'])->name('home');
