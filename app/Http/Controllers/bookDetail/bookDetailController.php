@@ -4,11 +4,21 @@ namespace App\Http\Controllers\bookDetail;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\bookDetail\bookDetailCustomerController;
 
 class bookDetailController extends Controller
 {
+    public function index($book_id){
+        if(Auth::check()){
+            return redirect()->route('book.detail.user',$book_id);
+
+        }
+        return redirect()->route('book.detail.guest',$book_id);
+
+    }
     public function bookDetail($book_id)
     {
         /*==============================INFO================== */
@@ -23,7 +33,7 @@ class bookDetailController extends Controller
             where book_id = '$book_id'
         ");
 
-        
+
         /*==============================BOOK SIMILAR================== */
         $genresSimilar = DB::table('book_belong')
             ->where('BOOK_ID', '=', $book_id)
@@ -38,13 +48,13 @@ class bookDetailController extends Controller
                 ->select('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE', DB::raw('MIN(book_image.IMAGE_LINK) AS IMAGE_LINK'))
                 ->limit(5)
                 ->get();
-        
+
         /*==============================POINT================== */
         $point = round(DB::table('rating')
         ->where('BOOK_ID', $book_id)
         ->avg('RATING_STAR'),1);
 
-        
+
         /*==============================STARS================== */
         $totalStar = DB::table('rating')
         ->where('BOOK_ID', $book_id)
@@ -63,7 +73,7 @@ class bookDetailController extends Controller
             $percentages["{$i}"] = ($totalStar > 0) ? round(($count / $totalStar) * 100) : 0;
         }
 
-        /*==============================REVIEW================== */        
+        /*==============================REVIEW================== */
         $customerReview = DB::table('rating')
             ->join ('customer', 'rating.customer_id', '=', 'customer.customer_id')
             ->where('rating.BOOK_ID', $book_id)

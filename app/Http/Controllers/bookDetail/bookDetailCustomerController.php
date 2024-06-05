@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\bookDetail;
 
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -10,8 +11,9 @@ use App\Models\Rating;
 
 class bookDetailCustomerController extends Controller
 {
-    public function bookDetailCustomer($book_id, $customer_id)
+    public function bookDetailCustomer($book_id)
     {
+        $customer_id = Auth::id();
         /*==============================INFO================== */
         $book = DB::table('book')
             ->leftJoin('book_image', 'book.BOOK_ID', '=', 'book_image.BOOK_ID')
@@ -43,13 +45,13 @@ class bookDetailCustomerController extends Controller
                 ->select('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE', DB::raw('MIN(book_image.IMAGE_LINK) AS IMAGE_LINK'))
                 ->limit(5)
                 ->get();
-        
+
         /*==============================POINT================== */
         $point = round(DB::table('rating')
         ->where('BOOK_ID', $book_id)
         ->avg('RATING_STAR'),1);
 
-        
+
         /*==============================STARS================== */
         $totalStar = DB::table('rating')
         ->where('BOOK_ID', $book_id)
@@ -67,9 +69,9 @@ class bookDetailCustomerController extends Controller
             $count = isset($starCounts[$i]) ? $starCounts[$i] : 0;
             $percentages["{$i}"] = ($totalStar > 0) ? round(($count / $totalStar) * 100) : 0;
         }
-        
 
-        /*==============================REVIEW================== */        
+
+        /*==============================REVIEW================== */
         $customerReview = DB::table('rating')
             ->join ('customer', 'rating.customer_id', '=', 'customer.customer_id')
             ->where('rating.BOOK_ID', $book_id)

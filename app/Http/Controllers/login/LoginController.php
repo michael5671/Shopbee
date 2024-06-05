@@ -23,7 +23,7 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
         // Xác thực thất bại
         return redirect()->back()->with('err','Sai thong tin');
@@ -39,7 +39,7 @@ class LoginController extends Controller
         $user = Customer::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
             'cart_id' =>0,
             'wishlist_id' =>0,
         ]);
@@ -55,7 +55,7 @@ class LoginController extends Controller
         $user->save();
 
         Auth::login($user);
-        return redirect()->intended('/admin/dashboard');
+        return redirect()->intended('/home');
     }
     public function Logout(Request $request): \Illuminate\Http\RedirectResponse
     {
