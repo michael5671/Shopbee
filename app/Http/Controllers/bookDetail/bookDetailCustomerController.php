@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers\bookDetail;
 
-
+use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Rating;
 
-class bookDetailController extends Controller
+class bookDetailCustomerController extends Controller
 {
-    public function bookDetail($book_id)
+    public function bookDetailCustomer($book_id, $customer_id)
     {
         /*==============================INFO================== */
-        $books = DB::table('book')
+        $book = DB::table('book')
             ->leftJoin('book_image', 'book.BOOK_ID', '=', 'book_image.BOOK_ID')
             ->select('book.*', 'book_image.IMAGE_LINK')
             ->where('book.BOOK_ID', $book_id)
             ->first();
+
+        $customer = DB::table('customer')
+            ->where('customer.customer_id', $customer_id)
+            ->first();
+
         /*==============================IMAGE================== */
         $booksImage = DB::select("select *
             from book_image
             where book_id = '$book_id'
         ");
 
-        
         /*==============================BOOK SIMILAR================== */
         $genresSimilar = DB::table('book_belong')
             ->where('BOOK_ID', '=', $book_id)
@@ -62,6 +67,7 @@ class bookDetailController extends Controller
             $count = isset($starCounts[$i]) ? $starCounts[$i] : 0;
             $percentages["{$i}"] = ($totalStar > 0) ? round(($count / $totalStar) * 100) : 0;
         }
+        
 
         /*==============================REVIEW================== */        
         $customerReview = DB::table('rating')
@@ -71,6 +77,26 @@ class bookDetailController extends Controller
             ->take(5)
             ->get();
 
-        return view('bookDetail.bookDetail', compact('books','booksImage','booksSimilar','point','percentages', 'customerReview'));
+        return view('bookDetail.bookDetailCustomer', compact('book','customer','booksImage','booksSimilar','point','percentages', 'customerReview'));
     }
+
+    public function insert_rating(Request $request)
+    {
+        $request->validate([
+            'BOOK_ID' => 'required|integer',
+            'CUSTOMER_ID' => 'required|integer',
+            'RATING_STAR' => 'required|min:1|max:5',
+            'DESCRIPTION' => 'nullable|string',
+        ]);
+
+        $rating = new Rating();
+        $rating->BOOK_ID = $request->BOOK_ID;
+        $rating->CUSTOMER_ID = $request->CUSTOMER_ID;
+        $rating->RATING_STAR = $request->RATING_STAR;
+        $rating->DESCRIPTION = $request->DESCRIPTION;
+        $rating->save();
+
+        return response()->json(['success' => 'Rating inserted successfully!'], 200);
+    }
+
 }

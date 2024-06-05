@@ -364,7 +364,7 @@ img{
         text-align: center;
         font-family: var(--second-font);
         color:var(--third-color);
-       
+        text-wrap:nowrap;
     }
     .rate_detail{
         font-weight: bold;
@@ -378,7 +378,7 @@ img{
         text-decoration: underline;
     }
     .hr3{
-        height: 0.1em;
+        height: 0.2em;
         background-color: gray ;
     }
     .customer_1{
@@ -393,11 +393,10 @@ img{
     .avatar{
         max-width: 80px;
         max-height: 80px;
-        border-radius: 50%;
-       
+        border-radius: 50%;   
     }
     .name{
-        font-size:1.5rem ;
+        font-size: 1.5rem ;
         font-weight: bold;
         
     }
@@ -410,7 +409,35 @@ img{
     
     .hr2 {
         width: 8rem;
-        height: 0.1em;
+        height: 0.2em;
         background-color: gray ;
+    }
+    .rate_detail{
+        .progress-bar{
+            background-color: rgb(238, 166, 26);
+        }
+    }
+    .rate_detail .star {
+        display: flex;
+        column-gap: 15px;
+        align-items: center;
+        margin-bottom: 5px; 
+    }
+    
+    .rate_detail .progress {
+        flex-grow: 1;
+        height: 10px; 
+    }
+    
+    .rate_detail .progress-bar {
+        height: 100%;
+    }
+
+    .write_Review{
+        form .btn{
+            background-color: var(--third-color);
+            padding: 0.2rem 1rem;
+            color: var(--white-color);
+        }
     }
 }

@@ -46,10 +46,15 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\MainAuthenticate::class)
 
 
 
+/*=================BOOK DETAIL========================= */
 use App\Http\Controllers\bookDetail\bookDetailController;
-
 Route::get('/bookDetail/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail']);
+Route::get('/bookDetail/{customer_id}/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer']);
+
+use App\Http\Controllers\bookDetail\bookDetailCustomerController;
+Route::post('/insert-rating', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'insert_rating']);
 
 
+/*=================HOME========================== */
 use App\Http\Controllers\homeController;
 Route::get('/', [homeController::class, 'home'])->name('home');
