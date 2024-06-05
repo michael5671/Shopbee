@@ -7,12 +7,13 @@
 
   <!--=============== BOOTSTRAP ===============-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
+
   <!--=============== BOXICONS ===============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-         
-  <!--=============== CSS ===============--> 
-  <link rel="stylesheet" href="public/frontend/css/home.css">
+
+  <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
+
 
 </head>
 <body>
@@ -24,14 +25,14 @@
           <h1 class = "display-5">Verbify</h1>
         </a>
       </li>
-      
+
       <li class = "col-5 d-md-inline d-none search_box">
         <form action = "#" method="GET" class="py-1 px-3 mb-1">
           <input name="search" id = "searchbox" placeholder="Snow White and the Seven Dwarfs..." maxlength="100">
           <button type="submit" class = "search-btn fs-5">
             <i class = "bx bx-search-alt"></i>
           </button>
-        </form>   
+        </form>
       </li>
 
       <li class="search_box_hide col-8 col-md-4 shadow">
@@ -40,10 +41,10 @@
           <button type="submit" class = "search-btn fs-5">
             <i class = "bx bx-search-alt"></i>
           </button>
-        </form>   
+        </form>
       </li>
 
-      <li class="header_icons col-md-auto text-end gx-2"> 
+      <li class="header_icons col-md-auto text-end gx-2">
         <div id="search-btn" class = "p-1 d-md-none d-inline">
           <i class = "bx bx-search-alt fs-4"></i>
         </div>
@@ -61,7 +62,7 @@
             <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
           </div>
           <span class="book_title col-5"><a href="#">Book's Name</a></span>
-          <span class="book_price col-3">25.000đ</span>  
+          <span class="book_price col-3">25.000đ</span>
           <button id = "delete-btn" class="xoa col-1">
             <i class='bx bxs-trash-alt'></i>
           </button>
@@ -71,7 +72,7 @@
             <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
           </div>
           <span class="book_title col-5"><a href="#">Book's Name Lorem ipsum dolor sit amet</a></span>
-          <span class="book_price col-3">1.352.000đ</span>  
+          <span class="book_price col-3">1.352.000đ</span>
           <button id = "delete-btn" class="xoa col-1">
             <i class='bx bxs-trash-alt'></i>
           </button>
@@ -81,7 +82,7 @@
             <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
           </div>
           <span class="book_title col-5"><a href="#">Book's Name Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, atque!</a></span>
-          <span class="book_price col-3">114.000đ</span>  
+          <span class="book_price col-3">114.000đ</span>
           <button id = "delete-btn" class="xoa col-1">
             <i class='bx bxs-trash-alt'></i>
           </button>
@@ -97,7 +98,7 @@
   </header>
 
   <!--==============MAIN==================-->
-  <main class="main pt-5">  
+  <main class="main pt-5">
     <!--==============INTRO==================-->
     <section class="intro py-5">
         <div class="container">
@@ -108,18 +109,18 @@
               <button class="more-btn">Explore more</button>
             </div>
             <div class="intro_img col-md-6 col-12">
-              <img src="public/frontend/images/intro.png" alt="img">
+              <img src="{{asset('frontend/images/intro.png')}}" alt="img">
             </div>
           </div>
         </div>
     </section>
-    
+
     <!--==============HIGHLIGHT==================-->
     <section class="highlight container py-5">
       <div class="row">
         <div class="bestseller col-sm-6 mb-4 mb-sm-0">
           <div class="card">
-            <img  class="card-img" src="public/frontend/images/highlight1.jpg" alt="">
+            <img  class="card-img" src="{{asset('frontend/images/highlight1.jpg')}}" alt="">
             <a href="#" class="content card-img-overlay">
               <h4 class="card-title m-1">Best Seller Books</h4>
               <p class="card-text">Of the month</p>
@@ -129,7 +130,7 @@
 
         <div class="feature col-sm-6 mb-4 mb-sm-0">
           <div class="card">
-            <img class="card-img" src="public/frontend/images/highlight2.jpg" alt="">
+            <img class="card-img" src="{{asset('frontend/images/highlight2.jpg')}}" alt="">
             <a href="#" class="content card-img-overlay">
               <h4 class="card-title m-1">Feature Book</h4>
               <p class="card-text">Of the month</p>
@@ -137,8 +138,8 @@
           </div>
         </div>
       </div>
-    </section> 
-  
+    </section>
+
     <!--==============GENRESLIST==================-->
     <section class="genreslist">
       <div class="container p-2 p-md-5">
@@ -150,7 +151,7 @@
             <div class="col">
                 <div class="genres card-item">
                     <div class="genres_img ratio-3x4 .img-fluid mb-2">
-                        <a href="#"><img src="public/frontend/images/genres_{{ $key }}.jpg" alt="img"></a>
+                        <a href="#"><img src="{{asset("frontend/images/genres_$key.jpg")}}" alt="img"></a>
                     </div>
                     <a href="#">
                         <p class="genres_name fs-5 mt-3">{{$genre->GENRES_NAME}}</p>
@@ -159,8 +160,9 @@
             </div>
           @endforeach
         </div>
+      </div>
     </section>
-  
+
     <!--==============PRODUCT COLLECTION==================-->
     <section class="products">
       <div class="container p-3 p-md-5">
@@ -169,7 +171,7 @@
 
             <h2 class="section_title">The Collections</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ex inventore repudiandae quam velit nam excepturi adipisci ratione obcaecati perferendis!</p>
-           
+
             <ul class="tab-nav product-tabs row row-cols-3 row-cols-md-6 g-2 g-md-5">
               @foreach ($genres as $key => $genre)
                 <li class="item col filter-genres" rel="tab{{ $key }}">
@@ -177,7 +179,7 @@
               @endforeach
             </ul>
           </div>
-                   
+
           <div class="tabs-content">
             @foreach($books as $key => $genreBooks)
               <div class="tab tab{{ $key }}">
@@ -199,14 +201,14 @@
                         @endforeach
                       @endif
                   </div>
-              </div> 
-            @endforeach 
+              </div>
+            @endforeach
           </div>
         </div>
-        <a href="#" class = "view-btn fs-6">View more</i></a>
+        <a href="#" class = "view-btn fs-6">View more</a>
       </div>
     </section>
-  
+
     <!--==============SALE==================-->
     <section class="sale">
       <div class="container">
@@ -223,8 +225,8 @@
                     </div>
                     <div class="list_content">
                       <span class="book_title fs-5"><a href="#">{{$book->NAME}}</a></span>
-                      <span class="book_author fs-5">{{ $book->AUTHOR }}</span>  
-                      <span class="book_price fs-5">${{$book->PRICE}}</span>  
+                      <span class="book_author fs-5">{{ $book->AUTHOR }}</span>
+                      <span class="book_price fs-5">${{$book->PRICE}}</span>
                     </div>
                   </div>
                 @endforeach
@@ -242,15 +244,15 @@
                   </div>
                   <div class="list_content">
                     <span class="book_title fs-5"><a href="#">{{$book->NAME}}</a></span>
-                    <span class="book_author fs-5">{{ $book->AUTHOR }}</span>  
-                    <span class="book_price fs-5">${{$book->PRICE}}</span>  
+                    <span class="book_author fs-5">{{ $book->AUTHOR }}</span>
+                    <span class="book_price fs-5">${{$book->PRICE}}</span>
                   </div>
                 </div>
               @endforeach
             </div>
           </div>
           <div class="banner col-5 col-md-3">
-            <img src="public/frontend/images/bookmark.jpg" alt="" class="img-fluid">
+            <img src="{{asset('frontend/images/bookmark.jpg')}}" alt="" class="img-fluid">
           </div>
         </div>
       </div>
@@ -283,11 +285,11 @@
           </div>
         </div>
         <!--Grid column-->
-  
+
         <!--Grid column-->
         <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Our Contact</h5>
-  
+
           <ul class="list-unstyled mb-0">
             <li>
               <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+ngh%E1%BB%87+Th%C3%B4ng+tin+-+%C4%90HQG+TP.HCM/@10.8702229,106.8000212,17z/data=!4m10!1m2!2m1!1suit!3m6!1s0x317527587e9ad5bf:0xafa66f9c8be3c91!8m2!3d10.8700089!4d106.8030541!15sCgN1aXSSAQp1bml2ZXJzaXR54AEA!16s%2Fm%2F02qqlmm?hl=vi-VN&entry=ttu">
@@ -296,13 +298,13 @@
               </a>
             </li>
             <li>
-              <a href="#!">
+              <a href="#">
                 <i class='bx bxs-phone'></i>
                 (+84) 8484 14 64646
               </a>
             </li>
             <li>
-              <a href="#!">
+              <a href="#">
                 <i class='bx bxl-gmail'></i>
                 verbify@gmail.com
               </a>
@@ -310,11 +312,11 @@
           </ul>
         </div>
         <!--Grid column-->
-  
+
         <!--Grid column-->
         <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Links</h5>
-  
+
           <ul class="list-unstyled">
             <li>
               <a href="#">Home</a>
@@ -335,7 +337,7 @@
       <!--Grid row-->
     </div>
     <!-- Grid container -->
-  
+
     <!-- Copyright -->
     <div class=" copyright p-2">
       © All Rights Reserved - 2024 - Group 10
@@ -352,9 +354,10 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!--=============== MAIN JS ===============-->
-  <script src="public/frontend/js/home.js"></script>
-  
-  <!--=============== BOOSTRAP ===============--> 
+  <script src="{{asset('frontend/js/home.js')}}"></script>
+
+
+  <!--=============== BOOSTRAP ===============-->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
