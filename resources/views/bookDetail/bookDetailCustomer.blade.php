@@ -318,14 +318,14 @@
 
   <!--==============MAIN==================-->
   <main class="main pt-5">
-    @if($books)
+    @if($book)
       <!--=============== INTRO ===============--> 
       <section class="intro py-5 mb-5">
           <div class="container">
             <div class="row g-5 mt-1">    
               <div class="img col-md-6 col-12">
                   <div class=" book-img col-12">
-                    <img id="mainImage" src="{{$books->IMAGE_LINK}}" alt="img"></div>
+                    <img id="mainImage" src="{{$book->IMAGE_LINK}}" alt="img"></div>
                     <div class="row g-2 mt-1">
                       @foreach($booksImage as $bookIMG)
                         <button class="product-img col-3" data-img-src="{{$bookIMG->IMAGE_LINK}}" onclick="changeImage(this)">
@@ -335,24 +335,24 @@
                     </div>
                   </div>
               <div class="text col-md-6 col-12">       
-                  <h1 class = "title display-3 mb-5">{{$books->NAME}}</h1>
-                  <p class = "subtitle h5 mb-4">{{$books->DESCRIPTION}}</p>
-                  <p class="book-price display-5 mb-4" >${{$books->PRICE}}</p>
+                  <h1 class = "title display-3 mb-5">{{$book->NAME}}</h1>
+                  <p class = "subtitle h5 mb-4">{{$book->DESCRIPTION}}</p>
+                  <p class="book-price display-5 mb-4" >${{$book->PRICE}}</p>
                   <div class=" info row mb-4">
                     <div class="col-6">
                         <div>
-                            ISBN <span class="isbn">{{$books->ISBN}}</span>
+                            ISBN <span class="isbn">{{$book->ISBN}}</span>
                         </div>
                         <div>
-                            Author: <span class="at">{{$books->AUTHOR}}</span>
+                            Author: <span class="at">{{$book->AUTHOR}}</span>
                         </div>
                     </div>
                     <div class="col-6">
                         <div>
-                            Release year <span class="isbn">{{$books->RELEASE_YEAR}}</span>
+                            Release year <span class="isbn">{{$book->RELEASE_YEAR}}</span>
                         </div>
                         <div>
-                            Page Quantity: <span class="at">{{$books->PAGE_QUANTITY}}</span>
+                            Page Quantity: <span class="at">{{$book->PAGE_QUANTITY}}</span>
                         </div>
                     </div>
                   </div>
@@ -375,8 +375,20 @@
               </div>
             </div>
           </div> 
-        </section>
-        
+      </section>
+      <script>
+          document.getElementById('increase').addEventListener('click', function() {
+          let quantityInput = document.getElementById('quantity');
+          quantityInput.value = parseInt(quantityInput.value) + 1;
+          });
+
+          document.getElementById('decrease').addEventListener('click', function() {
+              let quantityInput = document.getElementById('quantity');
+              if (quantityInput.value > 1) {
+                  quantityInput.value = parseInt(quantityInput.value) - 1;
+              }
+          });
+      </script>
       <!--=============== SIMILAR ===============--> 
       <section class="genres">
           <div class="container p-2 p-md-4 mb-5">
@@ -385,58 +397,18 @@
                 <hr class="hr1">
               </div>
               <div class="row ">
+                @foreach ($booksSimilar as $bookSML)
                   <div class="col">
                     <div class="book_item">                   
-                        <a href="#"  class="book_img"><img src="https://i.pinimg.com/564x/f9/f3/96/f9f396ff71e3470eb19e094fc281b7f8.jpg" alt="img"></a>
+                        <a href="#"  class="book_img"><img src="{{$bookSML->IMAGE_LINK}}" alt="img"></a>
                         <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="#"  >The Wizard of Oz</a></div>
-                          <div class="book_author fs-5">Author</div> 
-                          <div class="book_price fs-5">$34</div>    
+                          <div class="book_title fs-5"><a href="#">{{$bookSML->NAME}}</a></div>
+                          <div class="book_author fs-5">{{$bookSML->AUTHOR}}</div> 
+                          <div class="book_price fs-5">{{$bookSML->PRICE}}</div>    
                         </div>
                       </div>
                   </div>
-                  <div class="col">
-                    <div class="book_item">                   
-                        <a href="#"  class="book_img"><img src="https://i.pinimg.com/564x/f9/f3/96/f9f396ff71e3470eb19e094fc281b7f8.jpg" alt="img"""></a>
-                        <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="#"  >The Wizard of Oz</a></div>
-                          <div class="book_author fs-5">Author</div> 
-                          <div class="book_price fs-5">$34</div>    
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col">
-                    <div class="book_item">                   
-                        <a href="#"  class="book_img"><img src="https://i.pinimg.com/564x/f9/f3/96/f9f396ff71e3470eb19e094fc281b7f8.jpg" alt="img"""></a>
-                        <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="#"  >The Wizard of Oz</a></div>
-                          <div class="book_author fs-5">Author</div> 
-                          <div class="book_price fs-5">$34</div>    
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col">
-                    <div class="book_item">                   
-                        <a href="#"  class="book_img"><img src="https://i.pinimg.com/564x/f9/f3/96/f9f396ff71e3470eb19e094fc281b7f8.jpg" alt="img"""></a>
-                        <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="#"  >The Wizard of Oz</a></div>
-                          <div class="book_author fs-5">Author</div> 
-                          <div class="book_price fs-5">$34</div>    
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col">
-                    <div class="book_item">                   
-                        <a href="#"  class="book_img"><img src="https://i.pinimg.com/564x/f9/f3/96/f9f396ff71e3470eb19e094fc281b7f8.jpg" alt="img"""></a>
-                        <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="#"  >The Wizard of Oz</a></div>
-                          <div class="book_author fs-5">Author</div> 
-                          <div class="book_price fs-5">$34</div>    
-                        </div>
-                      </div>
-                    </div>
-                </div>  
-                  
+                @endforeach
               </div>
           </div>
       </section>
@@ -448,12 +420,12 @@
                 <hr>      
               </div>
               <div class=" book_detail">
-                  <div> Author: {{$books->AUTHOR}}</div> 
-                  <div> Language: {{$books->LANGUAGE}}</div>
-                  <div> Release Year: {{$books->RELEASE_YEAR}}</div>
+                  <div> Author: {{$book->AUTHOR}}</div> 
+                  <div> Language: {{$book->LANGUAGE}}</div>
+                  <div> Release Year: {{$book->RELEASE_YEAR}}</div>
                   <hr class="hr2 mb-4">
               </div>
-              <div class="mb-3">{{$books->DESCRIPTION}}
+              <div class="mb-3">{{$book->DESCRIPTION}}
               </div>
           </div>
       </section>
@@ -463,19 +435,162 @@
               <div class="section_title mb-5">
                 <p class="title">Review</p><hr>  
               </div>
-              <div class="rate row ">
-                  <span class="point col col-3 display-1"> {{$point}}/5</span>
-                  <span class=" rate_detail col col-6">
-                      <p>5 star</p>
-                      <p>4 star</p>
-                      <p>3 star</p>
-                      <p>2 star</p>
-                      <p>1 star</p>
-                  
-                  </span>
-                  <span class="reminder col col-3">Only registered users can write reviews. Please, <a href="#">login</a> or <a href="#">register</a></span> 
-                  
+              <div class="rate row g-4">
+                  <div class="point col col-3 display-1"> {{$point}}/5</div>
+                  <div class=" rate_detail col col-9 col-md-5 ">
+                    @foreach ($percentages as $key => $percentage)
+                      <div class = "star">
+                        <div class = "fs-6">{{($key) }} stars</div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="{{ $percentage }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $percentage }}%"></div>
+                        </div>
+                        <div class = "fs-6">{{ $percentage }}%</div>
+                      </div>
+                    @endforeach
+                  </div>
               </div>
+
+              <hr class="hr3 mb-4">
+
+              <div class="write_Review row">
+                  <div class="customer-info col-3">
+                        <img class="avatar" src="https://static.vecteezy.com/system/resources/previews/014/194/216/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg">
+                        <div class="name">{{$customer->USERNAME}}</div>
+                  </div>
+                  <div class = "col-6">
+                    <ul class="list-inline">
+                      @for($count = 1; $count <=5; $count++)
+                        @php
+                          if($count <= round($point))
+                          {
+                            $color = "color: #ffcc00;";
+                          }
+                          else {
+                            $color = "color: #ccc;";
+                          }
+                        @endphp
+                      <li 
+                          id = "{{$book->BOOK_ID}}-{{$count}}"
+                          data-index = "{{$count}}"
+                          data-product_id = "{{$book->BOOK_ID}}"
+                          data-customer_id = "{{$customer->CUSTOMER_ID}}"
+                          data-rating = "round($point))"
+                          class = "ratingStar list-inline-item"
+
+                          style = "cursor:pointer; {{$color}} ; font-size: 30px;";
+                          >
+                          &#9733
+                      </li>
+                      @endfor
+                    </ul>
+                    <form id = "form">
+                      <div class="form-group">
+                        <textarea class="reviewtext form-control mb-2" rows="4"></textarea>
+                        <input type="button" class="btn sendReview" value = "Send" name = "Send">
+                      </div>
+                    </form>
+                  </div>
+              </div>
+              <div id="completedComment" class = "text-center">
+              </div>
+
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script>
+                var currentRating = {{round($point)}};
+                var currentProduct_id = {{$book->BOOK_ID}};
+                var currentCustomer_id = {{$customer->CUSTOMER_ID}};
+
+                function remove_background(product_id)
+                {
+                    for(var count = 1; count <=5; count++)
+                        {
+                            $('#' + product_id + '-' + count).css ('color', "#ccc");
+                        }
+                }
+                
+                //hover
+                $(document).on('mouseenter', '.ratingStar', function(){
+                    var index = $(this).data("index");
+                    var product_id = $(this).data('product_id');
+
+                    remove_background(product_id);
+
+                    for(var count = 1; count <= index; count++)
+                        {
+                            $('#'+ product_id + '-' + count).css('color', '#ffcc00')
+                        }
+                });
+
+                //mouseleave ko rate
+                $(document).on('mouseleave', '.ratingStar', function(){
+                    var index = $(this).data("index");
+                    var product_id = $(this).data('product_id');
+                    var rating = $(this).data('rating');
+
+                    remove_background(product_id);
+
+                    for(var count = 1; count <= rating; count++)
+                        {
+                            $('#'+ product_id + '-' + count).css('color', '#ffcc00')
+                        }
+                });
+
+                //click rate
+                $(document).on('click', '.ratingStar', function(){
+                    var index = $(this).data("index");
+                    var product_id = $(this).data('product_id');
+                    var customer_id = $(this).data('customer_id');
+                    
+                    currentRating = index;   
+
+                    remove_background(product_id);
+
+                    for(var count = 1; count <= index; count++)
+                        {
+                            $('#'+ product_id + '-' + count).css('color', '#ffcc00')
+                        }
+
+                    $('.ratingStar[data-product_id="' + product_id + '"]').data('rating', index);                      
+                });
+
+                //send
+                $(document).on('click', '.sendReview', function(){
+                    var ratingStar = currentRating;
+                    var product_id = currentProduct_id;
+                    var customer_id = currentCustomer_id;
+                    var reviewText = $(".reviewtext").val();
+
+                    console.log('send:', ratingStar, product_id, customer_id, reviewText);
+
+                    $.ajax({
+                      url: '/insert-rating', 
+                      method: 'POST',
+                      data: {
+                          _token: '{{ csrf_token() }}', 
+                          BOOK_ID: product_id,
+                          CUSTOMER_ID: customer_id,
+                          RATING_STAR: ratingStar,
+                          DESCRIPTION: reviewText
+                      },
+                      success: function(response) {
+                          console.log('Response:', response);
+
+                           // Ẩn màn hình viết đánh giá và hiển thị thông báo
+                          $('.write_Review').hide();
+                          $('#completedComment').html(`
+                            <h1>THANK YOU!</h1>
+                            <i class="bx bx-check-circle fs-1" style="color: var(--main-color)"></i>
+                            <p>Your review has been submitted.</p>
+                          `).show();
+                      },
+                      error: function(xhr, status, error) {
+                          console.error('Error:', error);
+                          alert('Error!');
+                      }
+                  });
+                });
+              </script>
+
               <hr class="hr3 mb-4">
 
               <div class="book_review mb-3">
@@ -504,11 +619,8 @@
   </main>
   <!--==============FOOTER==================-->
   <footer class="footer container-fluid text-center text-lg-start">
-    <!-- Grid container -->
     <div class="container p-4">
-      <!--Grid row-->
       <div class="row">
-        <!--Grid column-->
         <div class="outro col-lg-6 col-md-12 mb-4 mb-md-0">
           <a href="#" class = "footer_brand h1">Verbify</a>
           <p>
@@ -527,9 +639,7 @@
             </a>
           </div>
         </div>
-        <!--Grid column-->
-  
-        <!--Grid column-->
+
         <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Our Contact</h5>
   
@@ -554,9 +664,7 @@
             </li>
           </ul>
         </div>
-        <!--Grid column-->
-  
-        <!--Grid column-->
+
         <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Links</h5>
   
@@ -575,22 +683,18 @@
             </li>
           </ul>
         </div>
-        <!--Grid column-->
       </div>
-      <!--Grid row-->
     </div>
-    <!-- Grid container -->
   
-    <!-- Copyright -->
     <div class=" copyright p-2">
       © All Rights Reserved - 2024 - Group 10
     </div>
-    <!-- Copyright -->
-
+    
     <style>
       /*===============  FOOTER CSS===================*/
       .footer{
         background-color: var(--second-color);
+        padding-inline: 0;
         color: var(--dark-color);
         a:hover{
             color: var(--main-color-light);
@@ -681,7 +785,6 @@
   
   <!--============== JQUERY ===============-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js">
-
   </script>
 
   <script>
