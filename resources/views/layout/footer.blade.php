@@ -8,8 +8,8 @@
             <div class="outro col-lg-6 col-md-12 mb-4 mb-md-0">
                 <a href="#" class = "footer_brand h1">Verbify</a>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae.
+                    Bring colorful, unique books where wondrous tales and adventures begin, inviting readers to explore enchanting worlds, meet unforgettable characters, and inspire dreams.
+
                 </p>
                 <div class="icons footer_icons text-center fs-3">
                     <a href="#" class="btn-facebook mx-1">

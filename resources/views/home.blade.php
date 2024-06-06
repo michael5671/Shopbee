@@ -29,9 +29,9 @@
         <div class="container">
           <div class="row g-5">
             <div class="intro_text col-md-6 col-12">
-              <h1 class = "intro_title display-3 mb-3">The Wonderful Things You Will Be </h1>
-              <p class = "intro_subtitle h5 mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ab ut delectus veritatis nemo assumenda.</p>
-              <button class="more-btn">Explore more</button>
+                <h1 class = "intro_title display-3 mb-3">Start a new adventure with our universe</h1>
+                <p class = "intro_subtitle h5 mb-3">Once upon a time, in a faraway kingdom, there lived a breathtakingly beautiful princess...</p>
+                <button class="more-btn">Explore more</button>
             </div>
             <div class="intro_img col-md-6 col-12">
               <img src="{{asset('frontend/images/intro.png')}}" alt="img">
@@ -95,8 +95,8 @@
           <div class="products-title-cover">
 
             <h2 class="section_title">The Collections</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ex inventore repudiandae quam velit nam excepturi adipisci ratione obcaecati perferendis!</p>
-
+            <p>Explore our enchanting collection of timeless tales and captivating adventures. Lose yourself in worlds of wonder and possibility within these pages.
+            </p>
             <ul class="tab-nav product-tabs row row-cols-3 row-cols-md-6 g-2 g-md-5">
               @foreach ($genres as $key => $genre)
                 <li class="item col filter-genres" rel="tab{{ $key }}">
