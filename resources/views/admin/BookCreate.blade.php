@@ -1,6 +1,8 @@
-@extends('layout.admin_MainStructure')
-@section('title', 'Customers')
-@section('content')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{{ asset('assets/css/style_product_mng.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/style_bookManagement.css') }}">
+@include('layout.sidebar')
 <div class="content">
         <h1>{{ $action }} </h1>
         <hr>
@@ -20,7 +22,7 @@
                 </ul>
             </div>
         @endif
-        
+
         <form action="{{ $actionLink }}"  method="POST" id="createForm">
             @csrf
             <input type="hidden" name="bookId" value="{{ $book->BOOK_ID }}">
@@ -101,10 +103,10 @@
             const productMenuItem = document.getElementById('product');
             const subMenu = document.getElementById('sub-menu-product');
             const productArrow = document.getElementById('arrow-product');
-        
+
             menuItems.forEach(function(menuItem) {
                 menuItem.addEventListener('click', function(event) {
-                    event.stopPropagation();  
+                    event.stopPropagation();
                     menuItems.forEach(function(item) {
                         item.classList.remove('active');
                         const arrow = item.querySelector('.arrow');
@@ -114,7 +116,7 @@
                         }
                     });
                     this.classList.add('active');
-        
+
                     if (this === productMenuItem) {
                         const isSubMenuVisible = subMenu.style.display === 'block';
                         subMenu.style.display = isSubMenuVisible ? 'none' : 'block';
@@ -132,7 +134,7 @@
             const genresSelect = document.getElementById('genres');
             const selectedGenresContainer = document.getElementById('selected-genres'); // Container chứa các thể loại đã chọn
             const selectedGenresInput = document.getElementById('selected-genres-input'); // Đây là input ẩn để gửi dữ liệu lên server
-        
+
             genresSelect.addEventListener('change', function() {
                 const selectedOption = genresSelect.options[genresSelect.selectedIndex];
                 if (selectedOption.value && !selectedGenresContainer.querySelector(`[data-value="${selectedOption.value}"]`)) {
@@ -158,7 +160,7 @@
                 selectedGenresInput.value = selectedGenres.join(',');
             }
             let selectedGenresValue = selectedGenresInput.value;
-            
+
             genresArray =  selectedGenresValue.split(',');
             genresArray.forEach(function(item){
                 const genreDiv = document.createElement('div');
@@ -172,12 +174,11 @@
                         updateSelectedGenresInput();
                     });
             });
-            
-            
+
+
             @if (session('success'))
                 alert('{{ session('success') }}');
             @endif
         });
         $("#createForm").validate();
     </script>
-@endsection

@@ -16,7 +16,7 @@ class CartController extends Controller
     {
 
         $user = Auth::user();
-        $cart = $user->cart()->with('books.images')->first();
+        $cart = DB::select('CALL get_cart_items_by_cart_id(?)', [Auth::user()->CART_ID]);;
 
         $suggestedBooks = $this->getSuggestedBooks($cart);
         return view('cart.index', compact('cart', 'suggestedBooks'));
@@ -24,7 +24,7 @@ class CartController extends Controller
 
     public function removeFromCart($itemId)
     {
-        $itemId = (int) $itemId; 
+        $itemId = (int) $itemId;
 
         $user = Auth::user();
         $cart = $user->cart;
@@ -39,20 +39,20 @@ class CartController extends Controller
     }
     private function getSuggestedBooks($cart)
     {
-        if (!$cart) {
+        if (true) {
             $suggestedBooks = Book::inRandomOrder()
                                 ->limit(6)
                                 ->get();
             return $suggestedBooks;
         }
-    
+
         $bookIds = $cart->books->pluck('BOOK_ID')->toArray();
         $genres = DB::table('book_belong')
                     ->select('GENRES_NAME')
                     ->whereIn('BOOK_ID', $bookIds)
                     ->pluck('GENRES_NAME')
                     ->toArray();
-    
+
         $suggestedBooks = Book::whereHas('genres', function($query) use ($genres) {
             $query->whereIn('genres.GENRES_NAME', $genres);
         })
@@ -61,7 +61,7 @@ class CartController extends Controller
         ->inRandomOrder()
         ->limit(5)
         ->get();
-    
+
         return $suggestedBooks;
     }
 
@@ -74,7 +74,7 @@ class CartController extends Controller
         if ($cartItem) {
             $quantity = $request->quantity;
             if ($quantity <= 0) {
-                $Cart::find($cart->CART_ID)->books->find($itemId)->item->delete();
+                Cart::find($cart->CART_ID)->books->find($itemId)->item->delete();
             } else {
                 $cartItem->books()->updateExistingPivot($bookId, ['QUANTITY' => $quantity]);
             }

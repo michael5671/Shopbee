@@ -104,7 +104,6 @@ a {
 .content {
     flex-grow: 1;
     padding: 20px;
-    margin-left: 220px; /* Adjusted to account for the sidebar width */
 }
 
 /* Form and button styles */

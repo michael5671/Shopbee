@@ -9,10 +9,10 @@ class book extends Model
 {
     use HasFactory;
     protected $table = 'book';
-  
+
       protected $primaryKey = 'BOOK_ID';
-    protected $keyType = 'int'; 
-    
+    protected $keyType = 'int';
+
     public $timestamps = false;
     protected $fillable = [
         'NAME',

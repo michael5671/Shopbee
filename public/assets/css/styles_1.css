@@ -248,14 +248,14 @@ footer {
     margin-left: 20%;
 }
 
-.sort-dropdown .btn {
+.sort-dropdown1 .btn {
     background-color: #841280;
     color: white;
     border-radius: 20px;
     padding: 10px 20px;
 }
 
-.sort-dropdown .dropdown-menu {
+.sort-dropdown1 .dropdown-menu {
     border-radius: 10px;
     margin-top: 10px;
 }

@@ -23,6 +23,7 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
+            if(Auth::user()->is_admin==1) return redirect()->route('dashboard');
             return redirect()->route('home');
         }
         // Xác thực thất bại
@@ -41,17 +42,12 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'cart_id' =>0,
-            'wishlist_id' =>0,
         ]);
 
         $cart = Cart::create([
             'CUSTOMER_ID' => $user->CUSTOMER_ID,
         ]);
-        $wishlist= Wishlist::create([
-            'CUSTOMER_ID' => $user->CUSTOMER_ID,
-        ]);
         $user->cart_id = $cart->id;
-        $user->wishlist_id = $wishlist->id;
         $user->save();
 
         Auth::login($user);

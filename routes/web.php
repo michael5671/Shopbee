@@ -59,6 +59,7 @@ use App\Http\Controllers\bookDetail\bookDetailController;
 
 Route::get('/book/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail'])->name('book.detail.guest');
 Route::get('/book/user/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer'])->name('book.detail.user');
+Route::get('/book/users/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer1'])->name('book.detail.user.add');
 Route::get('/book/{book_id}/route', [App\Http\Controllers\bookDetail\bookDetailController::class, 'index'])->name('book.detail');
 
 use App\Http\Controllers\bookDetail\bookDetailCustomerController;
@@ -71,21 +72,29 @@ Route::get('/', [homeController::class, 'home'])->name('home');
 /*=================Shop========================== */
 Route::get('/shop', [App\Http\Controllers\shop\ShopController::class, 'index'])->name('shop.index');
 Route::post('/shop/filter', [App\Http\Controllers\shop\ShopController::class, 'filter'])->name('shop.filter');
-Route::post('/shop/search', [App\Http\Controllers\shop\ShopController::class, 'search'])->name('shop.search');
+Route::post('/shop', [App\Http\Controllers\shop\ShopController::class, 'search'])->name('shop.search');
 Route::post('/shop/add', [App\Http\Controllers\shop\ShopController::class, 'add'])->name('shop.add');
 
 /*=================CART========================== */
-Route::get('/cart', [App\Http\Controllers\cart\CartController::class, 'showCart'])->name('cart.index');
-Route::post('/cart/update/{itemId}', [App\Http\Controllers\cart\CartController::class, 'updateCartItem'])->name('cart.update');
-Route::delete('/cart/remove/{itemId}', [App\Http\Controllers\cart\CartController::class, 'removeFromCart'])->name('cart.remove');
-=======
 
 Route::middleware(['main.auth','user.auth'])->group(function () {
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
 Route::get('/profile/order',[ProfileController::class,'listorder'])->name('profile.order');
 Route::post('/profile/update/{id}',[ProfileController::class,'update']);
 Route::post('/profile/update_pass/{id}',[ProfileController::class,'updatePass']);
+
+
+    Route::post('/shop/addBookToUserCard/{$bookid}', [bookDetailCustomerController::class, 'addbook'])->name('shop.additem');
+
+
+
+    Route::get('/cart', [App\Http\Controllers\cart\CartController::class, 'showCart'])->name('cart.index');
+    Route::post('/cart/update/{itemId}', [App\Http\Controllers\cart\CartController::class, 'updateCartItem'])->name('cart.update');
+    Route::delete('/cart/remove/{itemId}', [App\Http\Controllers\cart\CartController::class, 'removeFromCart'])->name('cart.remove');
+
+    Route::get('/payment/index', [PaymentController::class, 'index']);
+    Route::post('/payment/submit', [PaymentController::class, 'submit']);
+
 });
 
-Route::get('/payment/index', [PaymentController::class, 'index']);
-Route::post('/payment/submit', [PaymentController::class, 'submit']);
+

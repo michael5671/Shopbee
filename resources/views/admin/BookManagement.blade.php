@@ -43,7 +43,7 @@
                             {{ $product->PAGE_QUANTITY }}
                         </td>
                         <td>
-                            {{ $product->PRICE }}đ 
+                            {{ $product->PRICE }}$
                         </td>
                         <td>
                         <a href="{{ route('edit', $product->BOOK_ID) }}" class="edit-link">Edit</a><br>
@@ -52,13 +52,45 @@
                             @method('DELETE')
                             <a href="#" class="delete-link" onclick="confirmDelete(event)">Delete</a>
                         </form>
-                        
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+<div class="align-items-end mt-auto">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end"> {{-- Thêm justify-content-center để căn giữa --}}
+            {{-- Liên kết đến trang trước --}}
+            @if ($products->onFirstPage())
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            @else
+                <li class="page-item"><a class="page-link" href="{{ $products->previousPageUrl() }}">Previous</a></li>
+            @endif
+
+            {{-- Các liên kết đến các trang --}}
+            @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                <li class="page-item {{ $products->currentPage() == $page ? ' active' : '' }}">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                </li>
+            @endforeach
+
+            {{-- Liên kết đến trang sau --}}
+            @if ($products->hasMorePages())
+                <li class="page-item"><a class="page-link" href="{{ $products->nextPageUrl() }}">Next</a></li>
+            @else
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+            @endif
+
+        </ul>
+        <div class = "ms-3 fs-5 roboto-regular-italic purple justify-content-end d-flex">
+            {{4* ($products->currentPage()-1)+count($products) }} of {{$size }}
+            Customers
+        </div>
+
+    </nav>
+</div>
     <script>
 
         document.querySelectorAll('.product-checkbox').forEach(checkbox => {
@@ -87,7 +119,7 @@
 
         document.querySelectorAll('.toggle-switch').forEach(switchElement => {
             switchElement.addEventListener('change', function() {
-                
+
             });
         });
     </script>

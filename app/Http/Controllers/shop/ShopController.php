@@ -16,7 +16,7 @@ class ShopController extends Controller
         $selectedYears = $request->input('release_year', []);
         $selectedPrice = $request->input('price', '');
         $sortOption = $request->input('sort', 'Newest');
-        
+
         $query = book::with('genres', 'images')->where('IS_SELLING', 'SELLING');
 
         if (!empty($selectedGenres)) {
@@ -48,15 +48,15 @@ class ShopController extends Controller
                 $query->orderBy('RELEASE_YEAR', 'desc');
         }
         return $query;
-    } 
+    }
     public function index(Request $request)
     {
         $genres = Genre::all();
         $releaseYears = book::select('RELEASE_YEAR')->distinct()->orderBy('RELEASE_YEAR', 'desc')->get();
-        
-        $books = ShopController::filterBooks($request)->paginate(12);   
-        
-        
+
+        $books = ShopController::filterBooks($request)->paginate(12);
+
+
         $selectedPrice = $request->input('price', '');
         return view('shop.index', compact('books', 'genres', 'releaseYears', 'selectedPrice'));
     }

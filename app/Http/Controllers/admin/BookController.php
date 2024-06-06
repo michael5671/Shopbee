@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\book;
 use App\Models\book_image;
 use App\Models\Genre;
+use Illuminate\Support\Facades\DB;
+
 class BookController extends Controller
 {
     public function create()
@@ -19,7 +21,7 @@ class BookController extends Controller
         $imageLinks = ["","",""];
         return view('admin/BookCreate',compact('genres', 'book', 'action', 'actionLink', 'selectedGenres', 'imageLinks'));
     }
-    
+
         public function store(Request $request)
     {
         $request->validate([
@@ -29,12 +31,12 @@ class BookController extends Controller
             'language' => 'nullable|string|max:100',
             'release_year' => 'nullable|integer',
             'description' => 'nullable|string|max:700',
-            'page_quantity' => 'nullable|integer', 
+            'page_quantity' => 'nullable|integer',
             'price' => 'required|numeric',
             'image_links.*' => 'nullable|string|max:255',
             'selected-genres' => 'required|string',
         ]);
-    
+
         $book = book::create([
             'NAME' => $request->name,
             'ISBN' => $request->isbn,
@@ -51,23 +53,25 @@ class BookController extends Controller
             if (!empty($link)) { // Check if the link is not empty
                 $book->images()->create([
                     'IMAGE_LINK' => $link
-                ]);     
+                ]);
             }
         }
-        $genres = explode(',', $request->input('selected-genres')); 
+        $genres = explode(',', $request->input('selected-genres'));
 
         return redirect()->back()->with('success', 'Book information added successfully');
     }
         public function index()
         {
-            $products = book::with('images')->get();
-            return view('admin.BookManagement', compact('products'));
+            $products = book::with('images')->paginate(4);
+            $size=count(DB::table('book')->get());
+
+            return view('admin.BookManagement', compact('products','size'));
         }
 
-        public function edit($bookId) 
+        public function edit($bookId)
         {
             $book = book::with('images', 'genres')->where('BOOK_ID', $bookId)->firstOrFail();
-            
+
             $actionLink = route('update', $book->BOOK_ID) ;
             $selectedGenres = $book->genres->implode( 'GENRES_NAME', ',');
             $genres = Genre::all();
@@ -79,7 +83,7 @@ class BookController extends Controller
             }
             return view('admin/BookCreate', compact('book', 'genres', 'action', 'selectedGenres', 'imageLinks', 'actionLink'));
         }
-        
+
         public function update(Request $request, $id)
         {
             $request->validate([
@@ -89,12 +93,12 @@ class BookController extends Controller
                 'language' => 'nullable|string|max:100',
                 'release_year' => 'nullable|integer',
                 'description' => 'nullable|string|max:700',
-                'page_quantity' => 'nullable|integer', 
+                'page_quantity' => 'nullable|integer',
                 'price' => 'required|numeric',
                 'image_links.*' => 'nullable|string|max:255',
                 'selected-genres' => 'required|string',
             ]);
-        
+
             $book = book::find($id);
 
             $book->update([
@@ -107,20 +111,20 @@ class BookController extends Controller
                 'PAGE_QUANTITY' => $request->page_quantity,
                 'PRICE' => $request->price,
             ]);
-        
-            $book->images()->delete(); 
+
+            $book->images()->delete();
             $imageLinks = $request->image_links ?? [];
             foreach ($imageLinks as $link) {
-                if (!empty($link)) { 
+                if (!empty($link)) {
                     $book->images()->create([
                         'IMAGE_LINK' => $link
-                    ]);     
+                    ]);
                 }
             }
 
-            $genres = explode(',', $request->input('selected-genres')); 
-            $book->genres()->sync($genres); 
-        
+            $genres = explode(',', $request->input('selected-genres'));
+            $book->genres()->sync($genres);
+
             return redirect()->back()->with('success', 'Book information updated successfully');
         }
 

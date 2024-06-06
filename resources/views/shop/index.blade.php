@@ -15,51 +15,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
-    <div class="container-fluid">
-    <header class="header container-fluid">
-    <ul class="nav navbar container ">
-      <li>
-        <a href="#" class="nav_brand">
-          <h1 class = "display-5">Verbify</h1>
-        </a>
-      </li>
-      
-      <li class = "col-5 d-md-inline d-none search_box">
-        <form action = "{{ route('shop.search') }}" method="post" class="py-1 px-3">
-          @csrf
-          <input name="search" placeholder="Snow White and the Seven Dwarfs..." maxlength="100">
-          <button type="submit" class = "search-btn fs-5">
-            <i class = "bx bx-search-alt"></i>
-          </button>
-        </form>   
-      </li>
+    <div class="">
 
-      <li class="search_box_hide col-4 shadow">
-        <form action = "#" method="post" class="py-1 px-3">
-          <input name="search" class = "fs-7" placeholder="Search..." maxlength="100">
-          <button type="submit" class = "search-btn fs-5">
-            <i class = "bx bx-search-alt"></i>
-          </button>
-        </form>   
-      </li>
+       @include('layout.header')
 
-      <li class="header_icons col-md-auto text-end fs-4"> 
-        <div id="search-btn" class = "p-1 d-md-none d-inline">
-          <i class = "bx bx-search-alt"></i>
-        </div>
-        <div id="cart-btn" class = "p-1">
-          <i class = "bx bx-cart-alt"></i>
-        </div>
-        <div id="user-btn" class = "p-1">
-          <i class = "bx bx-user-circle"></i>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
-    
-    <div class="d-flex flex-lg-row pt-5">
-     
+        <div class="d-flex flex-lg-row">
+
     <aside class="filter-sidebar col-12 col-md-2 mb-0 mb-md-0">
         <h3>Filter</h3>
         <hr>
@@ -116,7 +77,7 @@
                     Show more <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
-        
+
             <div class="filter-section">
                 <h4>Price</h4>
                 <ul>
@@ -139,26 +100,14 @@
 
 
     <div class="main-content col-12 col-md-9 mt-5 ml-2">
-        <div class="row d-flex justify-content-end mb-3 ">
-                    <div class="sort-dropdown">
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false" onClick="toggleShowMore(this)">Sort By: Newest</button>
-                            <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                                <li><a class="dropdown-item" href="#" data-value="Newest">Newest</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Price (low to high)">Price (low to high)</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Price (high to low)">Price (high to low)</a></li>
-                                <li><a class="dropdown-item" href="#" data-value="Most popular">Most popular</a></li>
-                            </ul>
-                        </div>
-                    </div>
-        </div>
+
         <div class="row row-cols-4 " id="book-list">
                     @foreach ($books as $book)
                         <div class="col book_item">
                         @if (!empty($book->images->first()->IMAGE_LINK))
-                            <a href="#" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
+                            <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
                         @else
-                            <a href="#" class="book_img"><img src="https://via.placeholder.com/150" alt="{{ $book->name }}"></a>
+                            <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="https://via.placeholder.com/150" alt="{{ $book->name }}"></a>
                         @endif
                             <div class="book_info px-4 py-2">
                                 <span class="book_title fs-5"><a href="#">{{$book->NAME}}</a></span>
@@ -168,14 +117,14 @@
                         </div>
                     @endforeach
         </div>
-        
+
     </div>
 </div>
-    
+
 <div class="">
             {{ $books->onEachSide(5)->links('shop.my-paginate') }}
 </div>
-    
+
     <!--==============FOOTER==================-->
   <footer class="footer container-fluid text-center text-lg-start">
     <!-- Grid container -->
@@ -202,11 +151,11 @@
           </div>
         </div>
         <!--Grid column-->
-  
+
         <!--Grid column-->
         <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Our Contact</h5>
-  
+
           <ul class="list-unstyled mb-0">
             <li>
               <a href="#!">
@@ -229,11 +178,11 @@
           </ul>
         </div>
         <!--Grid column-->
-  
+
         <!--Grid column-->
         <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Links</h5>
-  
+
           <ul class="list-unstyled">
             <li>
               <a href="#">Home</a>
@@ -254,7 +203,7 @@
       <!--Grid row-->
     </div>
     <!-- Grid container -->
-  
+
     <!-- Copyright -->
     <div class=" copyright p-2">
       © All Rights Reserved - 2024 - Group 10
@@ -278,10 +227,10 @@
             $(target).on('hidden.bs.collapse', function () {
                 $(button).html('Show more <i class="fas fa-chevron-down"></i>');
             });
-           
+
         }
         $(document).ready(function() {
-            
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -296,7 +245,7 @@
                 $('#sortDropdown').text('Sort By: ' + selectedText);
                 filterBook();
             });
-        
+
             function filterBook() {
                 var selectedGenres = [];
                 $('input[name="genres[]"]:checked').each(function() {

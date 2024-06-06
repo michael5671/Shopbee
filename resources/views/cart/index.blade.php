@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,62 +9,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!--=============== BOXICONS ===============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
- 
+
   <!--=============== MAIN JS ===============-->
-  <script src="assets/js/main.js"></script>
-  <!--=============== BOOSTRAP ===============--> 
+  <!--=============== BOOSTRAP ===============-->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="sc.css">
-  <link rel="" href="script.js">
+  <link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
+
 
 
 
  <!--==============HEADER==================-->
- <header class="header container-fluid">
-  <ul class="nav navbar container">
-    <li>
-      <a href="#" class="nav_brand">
-        <h1 class = "display-5">Verbify</h1>
-      </a>
-    </li>
-    
-    <li class = "col-5 d-md-inline d-none search_box">
-      <form action = "#" method="post" class="py-1 px-3">
-        <input name="search" placeholder="Snow White and the Seven Dwarfs..." maxlength="100">
-        <button type="submit" class = "search-btn fs-5">
-          <i class = "bx bx-search-alt"></i>
-        </button>
-      </form>   
-    </li>
-
-    <li class="search_box_hide col-4 shadow">
-      <form action = "#" method="post" class="py-1 px-3">
-        <input name="search" class = "fs-7" placeholder="Search..." maxlength="100">
-        <button type="submit" class = "search-btn fs-5">
-          <i class = "bx bx-search-alt"></i>
-        </button>
-      </form>   
-    </li>
-
-    <li class="icons col-md-auto text-end fs-4"> 
-      <div id="search-btn" class = "p-1 d-md-none d-inline">
-        <i class = "bx bx-search-alt"></i>
-      </div>
-      <div id="cart-btn" class = "p-1">
-        <i class = "bx bx-cart-alt"></i>
-      </div>
-      <div id="user-btn" class = "p-1">
-        <i class = "bx bx-user-circle"></i>
-      </div>
-    </li>
-
-  </ul>
-</nav>
-</header>
-
+@include('layout.header')
 
 
 <section class="shopping_cart">
@@ -84,43 +41,47 @@
         <div class="xoa">Delete</div>
     </div>
 
-    
-    @foreach($cart->books as $item)
+    @php
+        $total = 0;
+
+        foreach($cart as $item) {
+            $total += $item->QUANTITY *$item->PRICE;
+        }
+    @endphp
+    @foreach($cart as $item)
             <div class="item_gio_hang">
                 <div class="box">
                     <input type="checkbox" class="tick">
                 </div>
                 <div class="hinh_anh">
-                    @if($item->images->isNotEmpty())
-                        <img src="{{ $item->images->first()->IMAGE_LINK }}" alt="{{ $item->NAME }}">
-                    @endif
+                        <img src="{{ $item->IMAGE_LINK }}" alt="{{ $item->NAME }}">
                 </div>
                 <div class="ten">{{ $item->NAME }}</div>
                 <div class="gia">
-                    <span class="giaban">{{ number_format($item->PRICE, 0, ',', '.') }} đ</span>
+                    <span class="giaban">{{ $item->PRICE}} $</span>
                 </div>
                 <div class="soluong">
                         <button type="submit" class="btn-minus" data-urlUpdate="{{ route('cart.update', $item->BOOK_ID) }}" data-urlDel="{{ route('cart.remove', $item->BOOK_ID) }} ">-</button>
-                    
-                        <input type="text" value="{{ $item->item->QUANTITY }}" min="1" max="100" class="quantity" readonly>
-                    
+
+                        <input type="text" value="{{ $item->QUANTITY }}" min="1" max="100" class="quantity" readonly>
+
                         <button type="submit" class="btn-plus" data-urlUpdate="{{ route('cart.update', $item->BOOK_ID) }}">+</button>
                 </div>
-                <div class="tongtien">{{ number_format($item->item->QUANTITY * $item->PRICE, 0, ',', '.') }} đ</div>
+                <div class="tongtien">{{$item->QUANTITY * $item->PRICE}} $</div>
                 <div class="xoa">
                         <button type="submit" class="btn btn-link p-0 m-0" data-bookId="{{ $item->BOOK_ID }}" data-urlDel="{{ route('cart.remove', $item->BOOK_ID) }} "><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
-        @endforeach   
+        @endforeach
 </div>
     <div class="summary-bar">
-      <div class="total-amount">Total: <span id="total-price">0đ</span></div>
+      <div class="total-amount">Total: <span id="total-price">{{$total}}</span></div>
       <button class="btn-order" onclick="placeOrder()">Order</button>
   </div>
 
 </div>
 </section>
-<section class="san-pham-lien-quan">
+<div class="san-pham-lien-quan container-fluid">
   <h2>Suggested Products</h2>
   <div class="danh-sach-san-pham">
     @foreach($suggestedBooks as $book)
@@ -128,101 +89,16 @@
         <img src="{{ $book->images->first()->IMAGE_LINK }}" alt="{{ $book->NAME }}">
         <h3>{{ $book->NAME }}<br>&nbsp;</h3>
         <p>{{ $book->DESCRIPTION }}</p>
-        <span class="gia">{{ number_format($book->PRICE, 0, ',', '.') }} đ</span>
+        <span class="gia">{{$book->PRICE}} $</span>
       </div>
     @endforeach
   </div>
-</section>
+</div>
 
 
 
 
-
- <!--==============FOOTER==================-->
- <footer class="footer container-fluid text-center text-lg-start">
-  <!-- Grid container -->
-  <div class="container p-4">
-    <!--Grid row-->
-    <div class="row">
-      <!--Grid column-->
-      <div class="outro col-lg-6 col-md-12 mb-4 mb-md-0">
-        <a href="#" class = "footer_brand h1">Verbify</a>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-          molestias. Fugiat pariatur maxime quis culpa corporis vitae.
-        </p>
-        <div class="icons footer_icons text-center fs-3">
-          <a href="#" class="btn-facebook mx-1">
-            <i class='bx bxl-facebook-circle'></i>
-          </a>
-          <a href="#" class="btn-github mx-1">
-            <i class='bx bxl-github'></i>
-          </a>
-          <a href="#" class="btn-figma mx-1">
-            <i class='bx bxl-figma'></i>
-          </a>
-        </div>
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5>Our Contact</h5>
-
-        <ul class="list-unstyled mb-0">
-          <li>
-            <a href="#!">
-              <i class='bx bxs-home'></i>
-              University of Information Technology
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <i class='bx bxs-phone'></i>
-              (+84) 8484 14 64646
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <i class='bx bxl-gmail'></i>
-              verbify@gmail.com
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5>Links</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">About us</a>
-          </li>
-          <li>
-            <a href="#">Shop</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-      <!--Grid column-->
-    </div>
-    <!--Grid row-->
-  </div>
-  <!-- Grid container -->
-
-  <!-- Copyright -->
-  <div class=" copyright p-2">
-    © All Rights Reserved - 2024 - Group 10
-  </div>
-  <!-- Copyright -->
-</footer>
+ @include('layout.footer')
 
 <!--=============== SCROLL UP ===============-->
 <a href="#" class="scrollup shadow" id="scroll-up">
@@ -234,11 +110,11 @@
 
 </body>
 </html>
- 
-               
-         
-           
-            
+
+
+
+
+
  <style>
  /*=============== GOOGLE FONTS ===============*/
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=League+Spartan:wght@300&display=swap');
@@ -252,7 +128,7 @@
   --main-color-lighter: hsl(314, 60%, 62%);
 
   --second-color: rgba(247, 233, 161, 1);
-  
+
   --third-color: rgba(9, 177, 171, 1);
 
   --fourth-color:hsl(30, 100%, 82%);
@@ -277,7 +153,7 @@
 *{
    margin:0; padding:0;
    box-sizing: border-box;
-   outline: none; 
+   outline: none;
    border:none;
    text-decoration: none;
 }
@@ -301,7 +177,7 @@ ul, li{
 /*===============  HEADER ===============*/
 header{
    background-color: var(--main-color);
-   
+
    z-index: var(--z-fixed);
    box-shadow: 0 2px 16px hsla(0, 0%, 0%, .15);
    color: var(--white-color);
@@ -339,7 +215,7 @@ header{
    background-color: var(--light-bg);
    position: absolute;
    right: 2rem;
-   top: 110%; 
+   top: 110%;
    text-align: center;
    transform-origin: top right;
    transform: scale(0);
@@ -374,26 +250,26 @@ header{
       color: var(--white-color);
    }
 }
-  
+
   .container h1 {
       text-align: center;
       margin-top: 50px;
       font-size: 25px;
       color:rgb(246, 208, 17);
-      
+
   }
   .container {
-      max-width: 800px; 
+      max-width: 800px;
       margin: 0 auto;
       padding: 0 10px;
-      
+
   }
   .title, .item_gio_hang {
       display: grid;
       grid-template-columns: 8% 15% 20% 15% 20% 10% 10%;
       align-items: center;
-      padding: 5px 0; 
-      border-bottom: 1px solid #ddd;   
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
       margin-top:30px;
   }
   .title {
@@ -406,10 +282,10 @@ header{
       justify-content: center;
   }
   .hinh_anh img {
-      width: 50px; 
+      width: 50px;
   }
   .item_gio_hang {
-      background-color: #fff9c4; 
+      background-color: #fff9c4;
       margin-top: 10px;
   }
   .soluong {
@@ -418,7 +294,7 @@ header{
       justify-content: center;
   }
   .soluong button, .soluong input {
-      margin: 0; 
+      margin: 0;
       padding: 3px;
       font-size: 12px;
   }
@@ -435,15 +311,7 @@ header{
   cursor: pointer;
   background-color: white;
 }
-input{
-    margin:0 1px;
-    width:49px;
-    height:23px;
-    font-size: 16px;
-    text-align: center;
-    border-radius: 0px;
-    border: 1px solid #ccc;
-}
+
 input[type="checkbox"]{
     height:13px;
 
@@ -463,30 +331,30 @@ button{
       cursor: pointer;
       color: purple;
       text-align: center;
-      font-size: 12px; 
+      font-size: 12px;
   }
 
   /* Desktop View */
   @media (min-width: 1024px) {
       .hinh_anh img {
-          width: 60px; 
+          width: 60px;
       }
       .soluong input {
-          width: 40px; 
+          width: 40px;
       }
   }
 
   @media (min-width: 1440px) {
       .hinh_anh img {
-          width: 70px; 
+          width: 70px;
       }
       .soluong input {
-          width: 50px; 
+          width: 50px;
       }
   }
   .ten {
-    word-wrap: break-word; 
-    max-width: 180px; 
+    word-wrap: break-word;
+    max-width: 180px;
     text-align: left;
 }
 
@@ -503,23 +371,23 @@ button{
   justify-content: center;
   text-align: center;
   width: 100%;
-  max-width: 850px; 
-  margin-left: auto; 
-  margin-right: auto; 
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 992px) {
   .summary-bar {
-    width: 95%; 
+    width: 95%;
   }
 }
 
 @media screen and (max-width: 768px) {
   .summary-bar {
-    flex-direction: column; 
-    align-items: center; 
-    text-align: left; 
-    padding: 10px; 
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
   }
 }
 
@@ -549,10 +417,10 @@ button{
   /* related product */
 
   .san-pham-lien-quan {
-    background-color: #f9f9f9; 
-    margin-left:20px; 
+    background-color: #f9f9f9;
+    margin-left:20px;
     margin-top:50px;
-    text-align: center; 
+    text-align: center;
     width:1400px;
     height:300px;
   }
@@ -565,53 +433,53 @@ button{
    margin-top:20px;
     display: flex;
     flex-wrap:nowrap;
-    overflow-x: auto; 
-    scroll-snap-type: x mandatory; 
-    justify-content: space-around; 
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    justify-content: space-around;
     max-width: 1300px;
-    margin: 0 auto; 
+    margin: 0 auto;
     height:250px;
   }
-  
-  .san-pham { 
+
+  .san-pham {
     width: 150px;
     margin-bottom: 20px;
-    background-color: rgb(255, 255, 255); 
+    background-color: rgb(255, 255, 255);
     padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    flex: 0 0 auto; 
-    scroll-snap-align: start; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+    scroll-snap-align: start;
     margin-right: 10px;
   }
-  
+
   .san-pham img {
     height: 50%;
     object-fit: cover;
   }
-  
+
  .san-pham h3 {
   margin-top: 10px;
   font-weight: bold;
   font-size: 12px;
   display: -webkit-box;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis; 
-  white-space: normal; 
-  line-height: 14px; 
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 14px;
   }
-  
+
   .san-pham p {
     margin-top: 5px;
     font-size: 10px;
     color:blue;
     display: -webkit-box;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   }
-  
+
   .san-pham .gia {
     display: block;
     margin-top: -10px;
@@ -638,7 +506,7 @@ button{
         max-width: 100%;
         padding: 0 10px;
     }
-    
+
     .san-pham img {
         width: 50%;
     }
@@ -665,29 +533,29 @@ button{
        color: var(--main-color-light);
     }
  }
- 
+
  .footer_brand{
     font-family: var(--second-font);
     color: var(--main-color);
  }
- 
+
  .footer_icons a{
     color: var(--dark-color);
  }
- 
+
  .contact a, .links a{
     color: var(--dark-color);
  }
- 
+
  .contact h5, .links h5{
     color: var(--main-color);
  }
- 
+
  .copyright{
     text-align: center;
     background-color: rgba(0, 0, 0, 0.2);
  }
- 
+
  /*=============== SCROLL UP ===============*/
  .scrollup{
     position: fixed;
@@ -701,21 +569,21 @@ button{
     opacity: .8;
     transition: .4s;
   }
-  
+
   .scrollup__icon{
     font-size: 1.25rem;
     color: var(--white-color);
   }
-  
+
   .scrollup:hover{
     background: var(--main-color-lighter);
     opacity: 1;
   }
-  
+
   /* Show Scroll Up*/
   .show-scroll{
     bottom: 3rem;
-  }           
+  }
 </style>
 
 <script>
@@ -736,7 +604,7 @@ button{
                 total += itemPrice * quantity;
             }
         });
-        totalPriceElement.innerText = total.toLocaleString('vi-VN') + ' đ';
+        totalPriceElement.innerText = total.toLocaleString('en-US') + ' $';
     }
 
     // Chọn hoặc bỏ chọn tất cả sản phẩm
@@ -769,7 +637,7 @@ button{
                 const itemPrice = parseInt(itemPriceElement.replace(' đ', '').replace(/\./g, ''));
                 item.querySelector('.tongtien').innerText = (itemPrice * parseInt(itemQuantity)).toLocaleString('vi-VN') + ' đ';
                 updateTotal();
-              
+
             let post =  JSON.stringify({quantity: itemQuantity, _token: "{{ csrf_token() }}"})
             const url = button.getAttribute("data-urlUpdate");
             let xhr = new XMLHttpRequest()
@@ -778,7 +646,7 @@ button{
             xhr.send(post);
             xhr.onload = function () {
                 if(xhr.status === 201) {
-                    console.log("Post successfully created!") 
+                    console.log("Post successfully created!")
                 }
             }
         });
@@ -797,7 +665,7 @@ button{
                 const itemPrice = parseInt(itemPriceElement.replace(' đ', '').replace(/\./g, ''));
                 item.querySelector('.tongtien').innerText = (itemPrice * parseInt(itemQuantity)).toLocaleString('vi-VN') + ' đ';
                 updateTotal();
-              
+
                 let post =  JSON.stringify({quantity: itemQuantity, _token: "{{ csrf_token() }}"})
                 const url = button.getAttribute("data-urlUpdate");
                 let xhr = new XMLHttpRequest()
@@ -806,7 +674,7 @@ button{
                 xhr.send(post);
                 xhr.onload = function () {
                     if(xhr.status === 201) {
-                        console.log("Post successfully created!") 
+                        console.log("Post successfully created!")
                     }
                 }
             } else {
@@ -818,12 +686,12 @@ button{
                 xhr.send(data);
                 xhr.onload = function () {
                     if(xhr.status === 201) {
-                        console.log("Deleted successfully !") 
+                        console.log("Deleted successfully !")
                     }
                 }
                 deleteProduct(button);
             }
-            
+
         });
     });
     document.querySelectorAll('.btn-link').forEach(button => {
@@ -836,11 +704,11 @@ button{
                 xhr.send(data);
                 xhr.onload = function () {
                     if(xhr.status === 201) {
-                        console.log("Deleted successfully !") 
+                        console.log("Deleted successfully !")
                     }
                 }
                 deleteProduct(button);
-        
+
         });
     })
 
@@ -861,7 +729,7 @@ button{
 
 // nút order
 function placeOrder() {
-    window.location.href = 'order.html';
+    window.location.href = 'payment/index';
 }
 document.querySelector('.btn-order').addEventListener('click', placeOrder);
 
@@ -880,17 +748,17 @@ document.querySelector('.btn-order').addEventListener('click', placeOrder);
 }
 
 
-/*=============== SHOW SEARCH ===============*/ 
+/*=============== SHOW SEARCH ===============*/
 let search = document.querySelector('.header .nav .search_box_hide');
 document.querySelector('#search-btn').onclick = () =>{
    search.classList.toggle('active');
 }
 
-/*=============== SHOW SCROLL UP ===============*/ 
+/*=============== SHOW SCROLL UP ===============*/
 let body = document.body;
 function scrollUp(){
    const scrollUp = document.getElementById('scroll-up');
-   if(this.scrollY >= 460) scrollUp.classList.add('show-scroll'); 
+   if(this.scrollY >= 460) scrollUp.classList.add('show-scroll');
    else scrollUp.classList.remove('show-scroll')
 }
 window.addEventListener('scroll', scrollUp)
@@ -898,4 +766,4 @@ window.addEventListener('scroll', scrollUp)
 
 
 
-            
+
