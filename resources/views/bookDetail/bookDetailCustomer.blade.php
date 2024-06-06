@@ -795,7 +795,6 @@
         mainImage.src = imgUrl;
     }
   </script>
-   <!-----------------script--------------------->
    <script>
     /*=============== SHOW SEARCH ===============*/
     let dropdownMenu = document.getElementById('dropdown');

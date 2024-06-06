@@ -63,8 +63,9 @@ use App\Http\Controllers\homeController;
 Route::get('/', [homeController::class, 'home'])->name('home');
 
 
-
+Route::middleware(['main.auth','user.auth'])->group(function () {
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
-Route::get('/profile/myorder',[ProfileController::class,'listorder'])->name('listorder');
+Route::get('/profile/order',[ProfileController::class,'listorder'])->name('profile.order');
 Route::post('/profile/update/{id}',[ProfileController::class,'update']);
 Route::post('/profile/update_pass/{id}',[ProfileController::class,'updatePass']);
+});

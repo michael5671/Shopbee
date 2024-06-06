@@ -1,4 +1,7 @@
 <!--==============HEADER==================-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet" href="{{ asset('css/default-font.css') }}">
+<link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
 <header class="header container-fluid">
     <ul class="nav navbar container">
         <li>

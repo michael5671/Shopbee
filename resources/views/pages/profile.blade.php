@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="username" class="col-4 col-form-label">Password</label>
+                                <label for="username" class="col-4 col-form-label">Username</label>
                                 <div class="col-8">
                                     <input type="text" class="form-control" id="username" name="username"
                                         value="{{ $user->USERNAME }}" readonly>

@@ -23,7 +23,7 @@
 <body>
 
   <!--==============MAIN==================-->
-  <main class="main pt-5">
+  <main class="main">
     <!--==============INTRO==================-->
     <section class="intro py-5">
         <div class="container">

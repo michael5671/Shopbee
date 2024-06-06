@@ -14,26 +14,15 @@
     <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{ asset('/assets/css/styles.css') }}" rel="stylesheet">
+
     <title>Trang Chủ</title>
 </head>
 
 <body>
     <div class="content bg-gray">
-        <div class="">
-            <div class="d-flex justify-content-between align-items-center p-3 bg-purple">
-                <div class="d-flex align-items-center">
-                    <div class="me-3">
-                        <img src="/assets/images/logo.svg" alt="" class="avatar">
-                    </div>
-                    <div class="fs-3" style="color: #F8EAA2">
-                        Shopbee
-                    </div>
-                </div>
-                <div class="">
-                    Account
-                </div>
-            </div>
-            <div class="d-flex p-5">
+        <div>
+            @include('layout.header')
+            <div class="d-flex p-5 pt-10">
                 <div class="w-30  p-3">
                     <div class="d-flex">
                         <div class="me-3">
@@ -47,11 +36,11 @@
                     </div>
                     <div class="mt-5 ms-3">
                         <div class="mb-3">
-                            <a href="/profile" class=" text-decoration-none fs-4 text-purple-active"><i
+                            <a href="/profile" class=" text-decoration-none fs-4 @if(Route::currentRouteName() === 'profile') text-purple-active @else text-purple-deactive  @endif"><i
                                     class="fa-regular fa-user fs-4 pe-3"></i>My Acount</a>
                         </div>
                         <div class="mb-3">
-                            <a href="/profile/myorder" class=" text-decoration-none fs-4 text-purple-deactive"><i
+                            <a href="/profile/order" class=" text-decoration-none fs-4  @if(Route::currentRouteName() === 'profile.order') text-purple-active @else text-purple-deactive @endif"><i
                                     class="fa-regular fa-user fs-4 pe-3"></i>Order management</a>
                         </div>
                     </div>
@@ -61,6 +50,7 @@
         </div>
     </div>
 </body>
+@include('layout.footer')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>

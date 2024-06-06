@@ -11,7 +11,7 @@
   --main-color-lighter: hsl(314, 60%, 62%);
 
   --second-color: rgba(247, 233, 161, 1);
-  
+
   --third-color: rgba(9, 177, 171, 1);
 
   --fourth-color:hsl(30, 100%, 82%);
@@ -38,7 +38,7 @@
 *{
    margin:0; padding:0;
    box-sizing: border-box;
-   outline: none; 
+   outline: none;
    border:none;
    text-decoration: none;
 }
@@ -71,7 +71,7 @@ img{
 /*===============  HEADER ===============*/
 header{
    background-color: var(--main-color);
-   position: fixed;
+   position: sticky;
    z-index: var(--z-fixed);
    box-shadow: 0 2px 16px hsla(0, 0%, 0%, .15);
    color: var(--white-color);
@@ -116,7 +116,7 @@ header{
    background-color: var(--light-bg);
    position: absolute;
    right: 2rem;
-   top: 110%; 
+   top: 110%;
    text-align: center;
    transform-origin: top right;
    transform: scale(0);
@@ -148,7 +148,7 @@ header{
    display: flex;
    flex-direction: row;
    i{
-      color: var(--white-color);     
+      color: var(--white-color);
       border-radius: 50%;
       padding: .3rem;
    }
@@ -175,7 +175,7 @@ header{
    margin-bottom: .3rem;
    line-height: 1.4rem;
  }
- 
+
  .book_title:hover a{
    color: var(--main-color-light);
  }
@@ -206,10 +206,10 @@ header{
   min-width: 250px;
   max-width: 280px;
   overflow: hidden;
-  
+
   right: 2rem;
-  top: 110%; 
-  
+  top: 110%;
+
   transform-origin: top right;
   transform: scale(0);
   transition: .2s linear;
@@ -234,13 +234,13 @@ header{
    max-height: none;
 
    font-size: .9rem;
-   font-weight: bold;   
+   font-weight: bold;
    min-height: 2.2rem;
 }
 
 .cart-item .book_price{
    font-size: .9rem;
-   font-weight: bold;   
+   font-weight: bold;
    color: var(--main-color);
    font-weight: bold;
    overflow-wrap: break-word;
@@ -261,7 +261,7 @@ header{
 }
 
 .dropdown.show {
-  display: block; 
+  display: block;
   transform: scale(1);
 }
 .xoa {
@@ -292,11 +292,11 @@ header{
   background-color:var(--main-color-alt);
 }
 .cart-item {
-  transition: transform 0.5s ease, opacity 0.5s ease; 
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 .cart-item.fade-out {
   transform: translateX(100%);
-  opacity: 0; 
+  opacity: 0;
 }
 
 /*=================MAIN ================*/
@@ -523,7 +523,7 @@ header{
    padding-top: 2rem;
    margin-bottom: 3rem;
    overflow: hidden;
-} 
+}
 
 .book_item:hover{
    box-shadow:0px 0px 10px rgba(24, 24, 24, 0.3);
@@ -562,7 +562,7 @@ header{
       max-height: 3rem;
    }
  }
- 
+
  .view-btn{
    background-color: var(--second-color);
    text-align: center;
@@ -577,7 +577,7 @@ header{
    color:var(--white-color);
  }
 
- 
+
 /*=============  LISTS ================*/
 .sale{
    margin-block: 5rem;
@@ -710,17 +710,17 @@ header{
    opacity: .8;
    transition: .4s;
  }
- 
+
  .scrollup__icon{
    font-size: 1.25rem;
    color: var(--white-color);
  }
- 
+
  .scrollup:hover{
    background: var(--main-color-lighter);
    opacity: 1;
  }
- 
+
  /* Show Scroll Up*/
  .show-scroll{
    bottom: 3rem;
