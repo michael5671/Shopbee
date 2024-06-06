@@ -25,7 +25,7 @@ class AdminController extends Controller
         return view('Admin.Orders',['orders'=>$orders,'size'=>$size]);
     }
     public function Dashboard(){
-        $formatter = new NumberFormatter('vi_VN', NumberFormatter::CURRENCY);
+        $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $totalSales = round(DB::selectOne("SELECT calculate_total_sales_last_30_days() AS total_sales")->total_sales);
         $totalSalesCompare = $totalSales-round(DB::selectOne("SELECT calculate_total_sales_previous_30_days() AS total_sales")->total_sales) ;
         $totalOrders = DB::selectOne("SELECT calculate_total_orders_last_30_days() AS total_orders")->total_orders;

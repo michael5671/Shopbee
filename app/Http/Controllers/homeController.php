@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home(){
-        $genres = DB::table('genres')->get();
+        $genres = DB::table('genres')->orderBy('genres_name','asc')->get();
 
         $books = [];
         for ($i = 0; $i < count($genres); $i++) {
-            $genreName = DB::table('genres')->select('GENRES_NAME')->offset($i)->limit(1)->value('GENRES_NAME');
-            
+            $genreName = DB::table('genres')->select('GENRES_NAME')->orderBy('genres_name','asc')->offset($i)->limit(1)->value('GENRES_NAME');
+
                 $books[$i] = DB::table('book')
                                 ->leftJoin('book_image', 'book_image.book_id', '=', 'book.book_id')
                                 ->join('book_belong', 'book.book_id', '=', 'book_belong.book_id')
@@ -22,7 +22,7 @@ class HomeController extends Controller
                                 ->select('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE', DB::raw('MIN(book_image.IMAGE_LINK) AS IMAGE_LINK'))
                                 ->get();
             }
- 
+
         $booksHotSale = DB::table('book')
                             ->leftJoin('book_image', 'book_image.book_id', '=', 'book.book_id')
                             ->join(DB::raw('(SELECT BOOK_ID FROM ORDER_ITEM GROUP BY BOOK_ID ORDER BY SUM(QUANTITY) DESC LIMIT 4) as top_books'), 'book.BOOK_ID', '=', 'top_books.BOOK_ID')
@@ -31,7 +31,7 @@ class HomeController extends Controller
                             ->get();
 
         $booksLastest = DB::table('book')
-                            ->join('book_image', 'book_image.book_id', '=', 'book.book_id')
+                            ->leftjoin('book_image', 'book_image.book_id', '=', 'book.book_id')
                             ->groupBy('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE')
                             ->orderByDesc('book.BOOK_ID')
                             ->select('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE', DB::raw('MIN(book_image.IMAGE_LINK) AS IMAGE_LINK'))

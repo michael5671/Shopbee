@@ -5,92 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--=============== BOOTSTRAP ===============-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
+
   <!--=============== BOXICONS ===============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
-  <!--=============== CSS ===============--> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--=============== CSS ===============-->
   <link rel="stylesheet" href="{{asset('frontend/css/product_detail.css')}}">
   <title>Document</title>
 </head>
 <body>
-  <!--==============HEADER==================-->
-  <header class="header container-fluid">
-    <!----------------html-------------------->
+<!--==============HEADER==================-->
+<header class="header container-fluid">
     <ul class="nav navbar container">
-      <li>
-        <a href="#" class="nav_brand">
-          <h1 class = "display-5">Verbify</h1>
-        </a>
-      </li>
-      
-      <li class = "col-5 d-md-inline d-none search_box">
-        <form action = "#" method="post" class="py-1 px-3">
-          <input name="search" placeholder="Snow White and the Seven Dwarfs..." maxlength="100">
-          <button type="submit" class = "search-btn fs-5">
-            <i class = "bx bx-search-alt"></i>
-          </button>
-        </form>   
-      </li>
+        <li>
+            <a href="{{route('home')}}" class="nav_brand">
+                <h1 class = "display-5">Verbify</h1>
+            </a>
+        </li>
 
-      <li class="search_box_hide col-8 col-md-4 shadow">
-        <form action = "#" method="post" class="py-1 px-3">
-          <input name="search" class = "fs-7" placeholder="Search..." maxlength="100">
-          <button type="submit" class = "search-btn fs-5">
-            <i class = "bx bx-search-alt"></i>
-          </button>
-        </form>   
-      </li>
+        <li class = "col-5 d-md-inline d-none search_box">
+            <form action = "#" method="GET" class="py-1 px-3">
+                <input name="search" id = "searchbox" placeholder="Snow White and the Seven Dwarfs..." maxlength="100">
+                <button type="submit" class = "search-btn fs-5 pt-1">
+                    <i class = "bx bx-search-alt"></i>
+                </button>
+            </form>
+        </li>
 
-      <li class="header_icons col-md-auto text-end gx-2"> 
-        <div id="search-btn" class = "p-1 d-md-none d-inline">
-          <i class = "bx bx-search-alt fs-4"></i>
-        </div>
-        <div id="cart-btn" class = "p-1">
-          <i class = "bx bx-cart-alt fs-4"></i>
-        </div>
-        <div id="user-btn" class = "p-1">
-          <a href="#"><i class = "bx bx-user-circle fs-4"></i></a>
-        </div>
-      </li>
+        <li class="search_box_hide col-8 col-md-4 shadow">
+            <form action = "#" method="post" class="py-1 px-3">
+                <input name="search" class = "fs-7" placeholder="Search..." maxlength="100">
+                <button type="submit" class = "search-btn fs-5">
+                    <i class = "bx bx-search-alt"></i>
+                </button>
+            </form>
+        </li>
 
-      <li class="dropdown p-2 px-md-3 shadow" id="dropdown">
-        <div class="cart-item p-1">
-          <div class="cart_img col-3">
-            <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img""img"></a>
-          </div>
-          <span class="book_title col-5"><a href="#">Book's Name</a></span>
-          <span class="book_price col-3">25.000đ</span>  
-          <button id = "delete-btn" class="xoa col-1">
-            <i class='bx bxs-trash-alt'></i>
-          </button>
-        </div>
-        <div class="cart-item p-1">
-          <div class="cart_img col-3">
-            <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img""img"></a>
-          </div>
-          <span class="book_title col-5"><a href="#">Book's Name Lorem ipsum dolor sit amet</a></span>
-          <span class="book_price col-3">1.352.000đ</span>  
-          <button id = "delete-btn" class="xoa col-1">
-            <i class='bx bxs-trash-alt'></i>
-          </button>
-        </div>
-        <div class="cart-item p-1">
-          <div class="cart_img col-3">
-            <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
-          </div>
-          <span class="book_title col-5"><a href="#">Book's Name Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, atque!</a></span>
-          <span class="book_price col-3">114.000đ</span>  
-          <button id = "delete-btn" class="xoa col-1">
-            <i class='bx bxs-trash-alt'></i>
-          </button>
-        </div>
+        <li class="header_icons col-md-auto text-end gx-2">
+            <div id="search-btn" class = "p-1 d-md-none d-inline">
+                <i class = "bx bx-search-alt fs-4"></i>
+            </div>
+            <div id="cart-btn" class = "p-1">
+                <i class = "bx bx-cart-alt fs-4"></i>
+            </div>
+            <div id="user-btn" class = "p-1">
+                <a href="{{route('login')}}"><i class = "bx bx-user-circle fs-4 @if(Auth::check())text-primary @endif"></i></a>
+            </div>
+        </li>
 
-        <div class="summary mt-2">
-          <p> 3 <span>total products</span></p>
-          <button class="btn-order" onclick="placeOrder()">Go to cart</button>
-        </div>
-      </li>
+        <li class="dropdown p-2 px-md-3 shadow" id="dropdown">
+            <div class="cart-item p-1">
+                <div class="cart_img col-3">
+                    <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
+                </div>
+                <span class="book_title col-5"><a href="#">Book's Name</a></span>
+                <span class="book_price col-3">25.000đ</span>
+                <button id = "delete-btn" class="xoa col-1">
+                    <i class='bx bxs-trash-alt'></i>
+                </button>
+            </div>
+            <div class="cart-item p-1">
+                <div class="cart_img col-3">
+                    <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
+                </div>
+                <span class="book_title col-5"><a href="#">Book's Name Lorem ipsum dolor sit amet</a></span>
+                <span class="book_price col-3">1.352.000đ</span>
+                <button id = "delete-btn" class="xoa col-1">
+                    <i class='bx bxs-trash-alt'></i>
+                </button>
+            </div>
+            <div class="cart-item p-1">
+                <div class="cart_img col-3">
+                    <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
+                </div>
+                <span class="book_title col-5"><a href="#">Book's Name Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, atque!</a></span>
+                <span class="book_price col-3">114.000đ</span>
+                <button id = "delete-btn" class="xoa col-1">
+                    <i class='bx bxs-trash-alt'></i>
+                </button>
+            </div>
+
+            <div class="summary mt-2">
+                <p> 3 <span>total products</span></p>
+                <button class="btn-order">Go to cart</button>
+            </div>
+        </li>
+
     </ul>
 
     <!-----------------css--------------------->
@@ -137,7 +137,7 @@
           background-color: var(--light-bg);
           position: absolute;
           right: 2rem;
-          top: 110%; 
+          top: 110%;
           text-align: center;
           transform-origin: top right;
           transform: scale(0);
@@ -169,7 +169,7 @@
           display: flex;
           flex-direction: row;
           i{
-              color: var(--white-color);     
+              color: var(--white-color);
               border-radius: 50%;
               padding: .3rem;
           }
@@ -218,7 +218,7 @@
         max-width: 280px;
         overflow: hidden;
         right: 2rem;
-        top: 110%; 
+        top: 110%;
         transform-origin: top right;
         transform: scale(0);
         transition: .2s linear;
@@ -242,14 +242,14 @@
         max-width: 100%;
         max-height: none;
         font-size: .9rem;
-        font-weight: bold;   
+        font-weight: bold;
         min-height: 2.2rem;
         line-height: 1.1rem;
       }
 
       .cart-item .book_price {
         font-size: .9rem;
-        font-weight: bold;   
+        font-weight: bold;
         color: var(--main-color);
         font-weight: bold;
         overflow-wrap: break-word;
@@ -270,7 +270,7 @@
       }
 
       .dropdown.show {
-        display: block; 
+        display: block;
         transform: scale(1);
       }
 
@@ -306,12 +306,12 @@
       }
 
       .cart-item {
-        transition: transform 0.5s ease, opacity 0.5s ease; 
+        transition: transform 0.5s ease, opacity 0.5s ease;
       }
 
       .cart-item.fade-out {
         transform: translateX(100%);
-        opacity: 0; 
+        opacity: 0;
       }
     </style>
   </header>
@@ -319,10 +319,10 @@
   <!--==============MAIN==================-->
   <main class="main pt-5">
     @if($books)
-      <!--=============== INTRO ===============--> 
+      <!--=============== INTRO ===============-->
       <section class="intro py-5 mb-5">
         <div class="container">
-          <div class="row g-5 mt-1">    
+          <div class="row g-5 mt-1">
             <div class="img col-md-6 col-12">
                 <div class=" book-img col-12">
                   <img id="mainImage" src="{{$books->IMAGE_LINK}}" alt="img"></div>
@@ -334,7 +334,7 @@
                     @endforeach
                   </div>
                 </div>
-            <div class="text col-md-6 col-12">       
+            <div class="text col-md-6 col-12">
                 <h1 class = "title display-3 mb-5">{{$books->NAME}}</h1>
                 <p class = "subtitle h5 mb-4">{{$books->DESCRIPTION}}</p>
                 <p class="book-price display-5 mb-4" >${{$books->PRICE}}</p>
@@ -367,7 +367,7 @@
                   <path d="M25.5205 30.9585C26.7286 30.9585 27.708 29.9791 27.708 28.771C27.708 27.5629 26.7286 26.5835 25.5205 26.5835C24.3124 26.5835 23.333 27.5629 23.333 28.771C23.333 29.9791 24.3124 30.9585 25.5205 30.9585Z" fill="#FCFCFC"/>
                   <path d="M18.9581 19.2919H21.8747V14.9314H26.2352V12.0148H21.8747V7.66895H18.9581V12.0148H14.5977V14.9314H18.9581V19.2919Z" fill="#FCFCFC"/>
                   <path d="M14.5837 25.1252H26.2503C26.5441 25.1243 26.8308 25.0347 27.0728 24.8682C27.3148 24.7017 27.5008 24.4659 27.6066 24.1918L31.7337 13.4585H28.6128L25.2441 22.2085H15.5607L9.01283 6.50225C8.79082 5.97005 8.41603 5.5156 7.93583 5.19633C7.45563 4.87706 6.89156 4.7073 6.31491 4.7085H2.91699V7.62517H6.31491L13.242 24.221C13.3514 24.4873 13.5372 24.7153 13.7759 24.8762C14.0147 25.0371 14.2957 25.1237 14.5837 25.1252Z" fill="#FCFCFC"/>
-                  </svg> Add to cart 
+                  </svg> Add to cart
                 </button>
               <button class="buy-btn col-5">Buy now</button>
             </div>
@@ -376,7 +376,7 @@
           </div>
         </div>
       </section>
-        
+
       <script>
             document.getElementById('increase').addEventListener('click', function() {
             let quantityInput = document.getElementById('quantity');
@@ -390,7 +390,7 @@
               }
           });
       </script>
-      <!--=============== SIMILAR ===============--> 
+      <!--=============== SIMILAR ===============-->
       <section class="genres">
           <div class="container p-2 p-md-4 mb-5">
               <div class="section_title mb-3">
@@ -400,12 +400,12 @@
               <div class="row ">
                 @foreach ($booksSimilar as $book)
                   <div class="col">
-                    <div class="book_item">                   
+                    <div class="book_item">
                         <a href="#"  class="book_img"><img src="{{$book->IMAGE_LINK}}" alt="img"></a>
                         <div class="book_info px-4 py-2">
                           <div class="book_title fs-5"><a href="#">{{$book->NAME}}</a></div>
-                          <div class="book_author fs-5">{{$book->AUTHOR}}</div> 
-                          <div class="book_price fs-5">{{$book->PRICE}}</div>    
+                          <div class="book_author fs-5">{{$book->AUTHOR}}</div>
+                          <div class="book_price fs-5">{{$book->PRICE}}</div>
                         </div>
                       </div>
                   </div>
@@ -413,15 +413,15 @@
               </div>
           </div>
       </section>
-      <!--=============== INFORMATION ===============--> 
+      <!--=============== INFORMATION ===============-->
       <section class="information">
           <div class="container p-2 p-md-4 mb-5">
               <div class="section_title mb-3">
                 <p class="title">Book Information</p>
-                <hr>      
+                <hr>
               </div>
               <div class=" book_detail">
-                  <div> Author: {{$books->AUTHOR}}</div> 
+                  <div> Author: {{$books->AUTHOR}}</div>
                   <div> Language: {{$books->LANGUAGE}}</div>
                   <div> Release Year: {{$books->RELEASE_YEAR}}</div>
                   <hr class="hr2 mb-4">
@@ -430,11 +430,11 @@
               </div>
           </div>
       </section>
-      <!--=============== REVIEW ===============--> 
+      <!--=============== REVIEW ===============-->
       <section class="review">
           <div class="container p-2 p-md-4 mb-5">
               <div class="section_title mb-5">
-                <p class="title">Review</p><hr>  
+                <p class="title">Review</p><hr>
               </div>
               <div class="rate row g-4">
                   <div class="point col col-3 display-1"> {{$point}}/5</div>
@@ -449,7 +449,7 @@
                       </div>
                     @endforeach
                   </div>
-                  <div class="reminder col">Only registered users can write reviews. <br>Please, <a href="#">login</a> or <a href="#">register</a></div>                  
+                  <div class="reminder col">Only registered users can write reviews. <br>Please, <a href="#">login</a> or <a href="#">register</a></div>
               </div>
               <hr class="hr3 mb-4">
 
@@ -477,7 +477,7 @@
       </section>
     @endif
   </main>
-  
+
   <!--==============FOOTER==================-->
   <footer class="footer container-fluid text-center text-lg-start">
     <!-- Grid container -->
@@ -504,26 +504,26 @@
           </div>
         </div>
         <!--Grid column-->
-  
+
         <!--Grid column-->
         <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Our Contact</h5>
-  
+
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!">
+              <a href="#">
                 <i class='bx bxs-home'></i>
                 University of Information Technology
               </a>
             </li>
             <li>
-              <a href="#!">
+              <a href="#">
                 <i class='bx bxs-phone'></i>
                 (+84) 8484 14 64646
               </a>
             </li>
             <li>
-              <a href="#!">
+              <a href="#">
                 <i class='bx bxl-gmail'></i>
                 verbify@gmail.com
               </a>
@@ -531,11 +531,11 @@
           </ul>
         </div>
         <!--Grid column-->
-  
+
         <!--Grid column-->
         <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5>Links</h5>
-  
+
           <ul class="list-unstyled">
             <li>
               <a href="#">Home</a>
@@ -556,7 +556,7 @@
       <!--Grid row-->
     </div>
     <!-- Grid container -->
-  
+
     <!-- Copyright -->
     <div class=" copyright p-2">
       © All Rights Reserved - 2024 - Group 10
@@ -607,7 +607,7 @@
       <a href="#" class="scrollup shadow" id="scroll-up">
         <i class='bx bx-up-arrow-alt scrollup__icon'></i>
       </a>
-      
+
       <!-----------------sroll up css--------------------->
       <style>
           /*=============== SCROLL UP CSS===============*/
@@ -623,38 +623,38 @@
             opacity: .8;
             transition: .4s;
           }
-          
+
           .scrollup__icon{
             font-size: 1.25rem;
             color: var(--white-color);
           }
-          
+
           .scrollup:hover{
             background: var(--main-color-lighter);
             opacity: 1;
           }
-          
+
           /* Show Scroll Up*/
           .show-scroll{
             bottom: 3rem;
           }
       </style>
-      
+
       <!-----------------sroll up script--------------------->
       <script>
-          /*=============== SHOW SCROLL UP ===============*/ 
+          /*=============== SHOW SCROLL UP ===============*/
           let body = document.body;
           function scrollUp(){
             const scrollUp = document.getElementById('scroll-up');
-            if(this.scrollY >= 460) scrollUp.classList.add('show-scroll'); 
+            if(this.scrollY >= 460) scrollUp.classList.add('show-scroll');
             else scrollUp.classList.remove('show-scroll')
           }
           window.addEventListener('scroll', scrollUp);
       </script>
   </div>
 
-  <script src="public/frontend/js/product_detail.js"></script>
-  
+  <script src="{{asset('frontend/js/product_detail.js')}}"></script>
+
   <!--============== JQUERY ===============-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js">
 
@@ -667,9 +667,8 @@
         mainImage.src = imgUrl;
     }
   </script>
-   <!-----------------script--------------------->
    <script>
-    /*=============== SHOW SEARCH ===============*/ 
+    /*=============== SHOW SEARCH ===============*/
     let dropdownMenu = document.getElementById('dropdown');
     let search = document.querySelector('.header .nav .search_box_hide');
     document.querySelector('#search-btn').onclick = () => {
@@ -714,7 +713,7 @@
         updateTotalProducts();
     });
 </script>
-  <!--=============== BOOSTRAP ===============--> 
+  <!--=============== BOOSTRAP ===============-->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <style>a{
   text-decoration: none;}</style>
