@@ -1,9 +1,9 @@
-/*=============== SHOW SEARCH ===============*/ 
+/*=============== SHOW SEARCH ===============*/
 let dropdown = document.getElementById('dropdown');
 let search = document.querySelector('.header .nav .search_box_hide');
 document.querySelector('#search-btn').onclick = () =>{
    search.classList.toggle('active');
-   dropdown.classList.remmove('show');
+   dropdown.classList.remove('show');
 }
 
 /*=============== SHOW CART ===============*/
@@ -43,12 +43,26 @@ document.querySelector('#search-btn').onclick = () =>{
 
       updateTotalProducts();
    });
+/*=================SHOW PROFILE==================*/
+document.addEventListener('DOMContentLoaded', function () {
+    const userIcon = document.getElementById('user-btn');
+    const profile = document.getElementById('profile');
+    const toggleDropdown = (show) => {
+        profile.classList.toggle('show', show);
+        search.classList.remove('active');
+        dropdown.classList.remove('show');
+    };
 
-/*=============== SHOW SCROLL UP ===============*/ 
+    userIcon.addEventListener('mouseenter', () => toggleDropdown(true));
+    userIcon.addEventListener('mouseleave', () => toggleDropdown(false));
+    profile.addEventListener('mouseenter', () => toggleDropdown(true));
+    profile.addEventListener('mouseleave', () => toggleDropdown(false));
+});
+/*=============== SHOW SCROLL UP ===============*/
 let body = document.body;
 function scrollUp(){
    const scrollUp = document.getElementById('scroll-up');
-   if(this.scrollY >= 460) scrollUp.classList.add('show-scroll'); 
+   if(this.scrollY >= 460) scrollUp.classList.add('show-scroll');
    else scrollUp.classList.remove('show-scroll')
 }
 window.addEventListener('scroll', scrollUp);
@@ -56,49 +70,38 @@ window.addEventListener('scroll', scrollUp);
 /*====================================================================================================================*/
 
 /*================================================== TABS -======================================*/
-var tabWrap = document.querySelector('.tab-wrap');
-if (tabWrap) {
-    tabWrap.addEventListener('click', function(event) {
-        if (event.target.classList.contains('item')) {
-            switchTab(event.target);
-        }
-    });
+if($('.tab-wrap')[0] ){
+    $('.tab-wrap' )
+        .on('click', '.tab-nav .item', switchTab )
+        .find( '.tab-nav .item:first-child' ).trigger( 'click' );
 
-    var firstTabNavItem = tabWrap.querySelector('.tab-nav .item:first-child');
-    firstTabNavItem.click();
-
-    function switchTab(clickedTab) {
-        var currentTab = clickedTab,
-            tabWrapper = currentTab.closest('.tab-wrap'),
-            rel = currentTab.getAttribute('rel'),
-            visibleContent = tabWrapper.querySelector('.' + rel),
+    function switchTab( event ){
+        var curentTab = $( this ),
+            tabWrapper = $( event.delegateTarget ),
+            visibleContent = $( '.' + curentTab.attr('rel') ),
             contentHeight;
 
-        tabWrapper.querySelectorAll('.tab-nav .item').forEach(function(item) {
-            item.classList.remove('active');
-        });
-        currentTab.classList.add('active');
+        $( '.active', tabWrapper ).removeClass( 'active' );
+        curentTab.addClass( 'active' );
 
-        tabWrapper.querySelectorAll('.visible-content').forEach(function(content) {
-            content.classList.remove('visible-content');
-        });
-        visibleContent.classList.add('visible-content');
+        $( '.visible-content', tabWrapper ).removeClass( 'visible-content' );
+        visibleContent.addClass( 'visible-content' );
 
-        contentHeight = visibleContent.offsetHeight;
-        tabWrapper.querySelector('.tabs-content').style.height = contentHeight + 'px';
+        contentHeight = visibleContent.height();
+        $( '.tabs-content', tabWrapper ).height( contentHeight );
     }
 
-    window.addEventListener('resize', resizeTab);
+    $( window ).on( 'resize.myTemplate' , resizeTab );
 
-    function resizeTab() {
-        var visibleContents = tabWrap.querySelectorAll('.tab.visible-content');
-        setTimeout(function() {
-            visibleContents.forEach(function(content) {
-                var contentHeight = content.offsetHeight,
-                    tabsContent = content.closest('.tabs-content');
+    function resizeTab( event ){
+        var visibleContent = $( '.tab.visible-content' );
+        setTimeout(function(){
+            visibleContent.each( function() {
+                var contentHeight = $( this ).outerHeight(true),
+                    tabsContent = $( this ).parents( '.tabs-content' );
 
-                tabsContent.style.height = contentHeight + 'px';
-            });
+                tabsContent.height( contentHeight );
+            } );
         }, 700);
     }
 }

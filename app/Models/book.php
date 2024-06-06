@@ -9,7 +9,8 @@ class book extends Model
 {
     use HasFactory;
     protected $table = 'book';
-    protected $primaryKey = 'BOOK_ID';
+  
+      protected $primaryKey = 'BOOK_ID';
     protected $keyType = 'int'; 
     
     public $timestamps = false;
@@ -36,5 +37,9 @@ class book extends Model
         return $this->belongsToMany(Cart::class, 'cart_has', 'BOOK_ID', 'CART_ID')
             ->as('item')
             ->withPivot('QUANTITY');
+    }
+    public function cartHas()
+    {
+        return $this->belongsTo(CartHas::class, 'BOOK_ID', 'BOOK_ID');
     }
 }

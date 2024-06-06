@@ -11,13 +11,13 @@
                 <div class="card sales-card background-purple white">
                     <div class="card-body d-flex flex-column ">
                         <h6 class="card-title roboto-regular">Total sales this month</h6>
-                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">{{$formatter->formatCurrency($totalSales,'VND')}}
+                        <div class="card-text sales-amount roboto-medium-italic align-self-center fs-3">{{$formatter->formatCurrency($totalSales,'USD')}}
                         </div>
                         <div class="align-self-center">
                             @if($totalSalesCompare>0)
-                            <span class="badge text-bg-success">{{$formatter->formatCurrency($totalSalesCompare,'VND')}}</span>
+                            <span class="badge text-bg-success">{{$formatter->formatCurrency($totalSalesCompare,'USD')}}</span>
                                 @else
-                                <span class="badge text-bg-danger">{{$formatter->formatCurrency($totalSalesCompare,'VND')}}</span>
+                                <span class="badge text-bg-danger">{{$formatter->formatCurrency($totalSalesCompare,'USD')}}</span>
                             @endif
                             <span class="sales-period">Compared to last month</span>
                         </div>

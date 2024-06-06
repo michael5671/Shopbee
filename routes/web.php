@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\login\LoginController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +35,7 @@ Route::get('/test',[\App\Http\Controllers\test::class,'index']);
 
 
 
-Route::prefix('admin')->middleware(\App\Http\Middleware\MainAuthenticate::class)->group(function () {
+Route::prefix('admin')->middleware(['main.auth','admin.auth'])->group(function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     })->name('dashboard');
@@ -54,8 +56,10 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\MainAuthenticate::class)
 
 /*=================BOOK DETAIL========================= */
 use App\Http\Controllers\bookDetail\bookDetailController;
-Route::get('/bookDetail/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail']);
-Route::get('/bookDetail/{customer_id}/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer']);
+
+Route::get('/book/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail'])->name('book.detail.guest');
+Route::get('/book/user/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer'])->name('book.detail.user');
+Route::get('/book/{book_id}/route', [App\Http\Controllers\bookDetail\bookDetailController::class, 'index'])->name('book.detail');
 
 use App\Http\Controllers\bookDetail\bookDetailCustomerController;
 Route::post('/insert-rating', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'insert_rating']);
@@ -64,7 +68,6 @@ Route::post('/insert-rating', [App\Http\Controllers\bookDetail\bookDetailCustome
 /*=================HOME========================== */
 use App\Http\Controllers\homeController;
 Route::get('/', [homeController::class, 'home'])->name('home');
-
 /*=================Shop========================== */
 Route::get('/shop', [App\Http\Controllers\shop\ShopController::class, 'index'])->name('shop.index');
 Route::post('/shop/filter', [App\Http\Controllers\shop\ShopController::class, 'filter'])->name('shop.filter');
@@ -75,3 +78,14 @@ Route::post('/shop/add', [App\Http\Controllers\shop\ShopController::class, 'add'
 Route::get('/cart', [App\Http\Controllers\cart\CartController::class, 'showCart'])->name('cart.index');
 Route::post('/cart/update/{itemId}', [App\Http\Controllers\cart\CartController::class, 'updateCartItem'])->name('cart.update');
 Route::delete('/cart/remove/{itemId}', [App\Http\Controllers\cart\CartController::class, 'removeFromCart'])->name('cart.remove');
+=======
+
+Route::middleware(['main.auth','user.auth'])->group(function () {
+Route::get('/profile',[ProfileController::class,'index'])->name('profile');
+Route::get('/profile/order',[ProfileController::class,'listorder'])->name('profile.order');
+Route::post('/profile/update/{id}',[ProfileController::class,'update']);
+Route::post('/profile/update_pass/{id}',[ProfileController::class,'updatePass']);
+});
+
+Route::get('/payment/index', [PaymentController::class, 'index']);
+Route::post('/payment/submit', [PaymentController::class, 'submit']);

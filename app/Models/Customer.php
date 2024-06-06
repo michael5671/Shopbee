@@ -18,7 +18,6 @@ class Customer extends Model implements Authenticatable
     {
     }
 
-
     public function getAuthIdentifierName()
     {
         return 'CUSTOMER_ID';
