@@ -1,0 +1,274 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #9B2896;
+    color: #F8EAA2;
+    padding: 20px;
+}
+
+#title{
+    font-size: 22px;
+    font-weight: bold;
+    color: #F8EAA2;
+}
+.sidebar h2 {
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu .menu-item {
+    position: relative;
+    margin-bottom: 10px;
+    color: #F8EAA2;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.main-menu .menu-item i {
+    margin-right: 10px;
+}
+
+.main-menu .menu-item .arrow {
+    position: absolute;
+    right: 10px;
+    color: #F8EAA2;
+    font-size: 16px;
+    padding-top: 1.5px;
+}
+
+/* Add hover effect for menu items */
+#product-management{
+    padding-bottom: 10px;
+}
+.sub-menu {
+    display: none;
+    padding-left: 20px;
+    background-color: #9B2896;
+    color: #F8EAA2;
+    list-style-type: none;
+    margin: 0;
+}
+
+a {
+    color: #F8EAA2;
+    text-decoration: none;
+}
+
+#product-management{
+    font-size: 17.5px;
+}
+.menu-item #product:hover {
+    background-color: #72216F;
+}
+
+.menu-item.active {
+    background-color: #72216F;
+}
+
+.menu-item:hover {
+    background-color: #72216F;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 220px; /* Adjusted to account for the sidebar width */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group-image{
+    display: ruby;
+    flex-wrap: wrap;
+
+}
+.form-group label {
+    flex: 1 1 30%;
+    padding-right: 10px;
+}
+
+/* Adjusted flex-basis for input, select, and textarea */
+.form-group input, .form-group select, .form-group textarea {
+    flex: 1 1 70%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.form-group select {
+    height: 40px;
+}
+
+.form-group select[multiple] {
+    height: 100px;
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+    min-width: 45%;
+}
+
+.form-group-row .form-group + .form-group {
+    margin-left: 10px;
+}
+
+.description {
+    flex-basis: 100%;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px; /* Optional: add margin if needed */
+}
+
+button {
+    padding: 11.5px 20px;
+    background-color: #9B2896;
+    color: #F8EAA2;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container button + button {
+    margin-left: 10px; /* Optional: add space between the buttons */
+}
+
+button:hover {
+    background-color: #72216F;
+}
+
+
+/* Genres */
+.selected-genres {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.selected-genre {
+    background-color: #9B2896;
+    color: #F8EAA2;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.selected-genre:hover {
+    background-color: #72216F;
+}
+
+/* Plus icon  */
+
+/*
+.upload-container, .upload-frame {
+    border: 2px dashed #9B2896;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #9B2896;
+    margin-bottom: 20px;
+    display: block;
+    width: 120px;
+    height: 150px;
+    position: relative;
+}
+*/
+
+
+.upload-container:hover, .upload-frame:hover {
+    background-color: #f0f0f0;
+}
+
+.upload-container i, .upload-frame i {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.upload-container p, .upload-frame p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Remove vertical-align and margin-right */
+.upload-frame {
+    margin-bottom: 10px; /* Adjust margin-bottom for spacing */
+}
+
+/*
+.upload-frame input {
+    display: none;
+}
+*/
+
+#photo-urls{
+    width: 300px;
+    height: 30px;
+}
+.upload-frame label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.upload-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.upload-frame span{
+    display: block;
+    text-align: center;
+    /* margin-top: 10px; */
+}
+
+.upload-container + .upload-frame {
+    margin-top: 10px;
+}
+
+.video-info {
+    color: #808080;
+}
+
+li {
+    font-size: 20px;
+}
+
+#img-book{
+    color: #808080;
+    font-weight: bold;
+    font-size: 20px;
+}

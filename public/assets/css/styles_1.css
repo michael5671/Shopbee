@@ -1,0 +1,276 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.main-nav {
+    background-color: #841280;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.main-nav ul li {
+    float: left;
+}
+
+.main-nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.main-nav ul li a:hover {
+    background-color: #111;
+}
+
+.row row-cols-4 {
+    max-height: 700px;
+    min-width: 600px;
+}
+
+.product-card-img img {
+    margin-top: 7%;
+}
+
+.product-title {
+    width: 220px;
+    font-size: 22px;
+    line-height: 1.5em;
+    max-height: 3em;
+    height: 3em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    margin: 10px 12px;
+}
+
+.product-author {
+    margin: 10px 12px;
+}
+
+.product-price {
+    margin: 0 12px;
+    padding-bottom: 10px;
+}
+
+.add-to-cart {
+    margin-bottom: 100px;
+}
+
+
+
+/* footer */
+footer {
+    background-color: #F8EAA2;
+    color: #841280;
+    padding: 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 20px;
+}
+
+.footer-section h3 {
+    margin-top: 0;
+    color: #ff9900;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: #841280;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #444;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.filter-sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: none;
+    border: 1px solid #841280;
+    margin: 60px 0 0 40px;
+}
+
+.filter-sidebar hr {
+    border: 2px solid #841280;
+}
+
+.filter-sidebar h3 {
+    margin-top: 0;
+    color: #000;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h4 {
+    margin: 10px 0;
+    color: #000;
+}
+
+.filter-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.filter-section ul li {
+    margin: 5px 0;
+}
+
+.filter-section ul li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.filter-section button {
+    text-decoration: none;
+    color: #841280;
+    padding: 0;
+}
+
+.pagination-custom .page-link {
+    background-color: #841280;
+    color: white;
+}
+
+.pagination-custom .page-link:hover {
+    background-color: #5b0f58;
+    color: white;
+}
+
+.pagination-custom .page-item.active .page-link {
+    background-color: #841280;
+    border-color: #841280;
+}
+
+.pagination-custom {
+    justify-content: flex-end;
+    /* Căn về phía bên trái */
+    margin-right: 70px;
+}
+
+.main-content hr {
+    border: 2px solid #841280;
+}
+
+.product-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+
+    overflow: hidden;
+    margin: 10px;
+
+}
+
+.product-info {
+    margin-top: 20px;
+    padding-left: 10px;
+    text-align: left;
+    position: relative;
+}
+
+.product-info h2 {
+    color: #841280;
+}
+
+.product-info button {
+    position: absolute;
+    background: #6200ea;
+    color: white;
+    top: 50px;
+    right: 40px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    font-size: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.3s;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.product-card-img img {
+    display: flex;
+    object-fit: cover;
+    height: 230px;
+    margin-left: 20%;
+}
+
+.sort-dropdown .btn {
+    background-color: #841280;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.sort-dropdown .dropdown-menu {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Responsive Styles for Desktop */
+@media (min-width: 1024px) {
+
+
+
+    .product-author,
+    .product-price {
+        margin: 10px 20px;
+    }
+
+    .footer-container {
+        justify-content: space-between;
+    }
+}

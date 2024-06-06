@@ -1,0 +1,150 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=League+Spartan:wght@300&display=swap');
+
+:root{
+  /*========== Colors ==========*/
+
+  --main-color: hsl(302, 60%, 33%);
+  --main-color-dark: #39245F;
+  --main-color-light: rgba(204, 148, 213, 1);
+  --main-color-lighter: hsl(314, 60%, 62%);
+
+  --second-color: rgba(247, 233, 161, 1);
+  
+  --third-color: rgba(9, 177, 171, 1);
+
+  --fourth-color:hsl(30, 100%, 82%);
+  --fourth-color-dark:hsl(14, 91%, 50%);
+  --fourth-color-dark-alt:hsl(14, 91%, 45%);
+
+  --white-color: hsl(0, 0%, 100%);
+  --dark-color: hsl(0, 8%, 28%);
+
+  --light-bg:#eee;
+  --black:#2c3e50;
+  --border:.1rem solid rgba(0,0,0,.2);
+
+  /*========== Font and typography ==========*/
+  --body-font: "League Spartan", sans-serif;
+  --second-font: "Fredoka", sans-serif;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+
+*{
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; 
+   border:none;
+   text-decoration: none;
+}
+
+a{
+   text-decoration: none;
+}
+
+ul, li{
+   text-decoration: none;
+   list-style-type: none;
+}
+
+img{
+   max-width: 100%;
+   height: auto;
+   object-fit: cover;
+}
+
+.button:hover{
+   background-color: var(--dark-color);
+}
+
+/*===============  HEADER ===============*/
+header{
+   background-color: var(--main-color);
+   position: fixed;
+   z-index: var(--z-fixed);
+   box-shadow: 0 2px 16px hsla(0, 0%, 0%, .15);
+   color: var(--white-color);
+   
+}
+
+.nav_brand{
+   color: var(--white-color);
+   font-family: var(--second-font);
+}
+
+.search_box{
+   border-radius: 1rem;
+   background-color: var(--light-bg);
+   form
+   {
+      display: flex;
+   }
+   input{
+      width: 100%;
+      background: none;
+      font-family: var(--body-font);
+      color: var(--main-color);
+   }
+   .search-btn{
+      cursor: pointer;
+      color:var(--black);
+   }
+   .search-btn :hover{
+      color:var(--main-color);
+   }
+}
+
+.search_box_hide{
+   border-radius: 1rem;
+   background-color: var(--light-bg);
+   position: absolute;
+   right: 2rem;
+   top: 110%; 
+   text-align: center;
+   transform-origin: top right;
+   transform: scale(0);
+   transition: .2s linear;
+   form
+   {
+      display: flex;
+   }
+   input{
+      width: 100%;
+      background: none;
+      font-family: var(--body-font);
+      color: var(--main-color);
+   }
+   .search-btn{
+      cursor: pointer;
+      color:var(--black);
+   }
+   .search-btn :hover{
+      color:var(--main-color);
+   }
+}
+
+.header .nav .active{
+   transform: scale(1);
+}
+
+.header_icons{
+   display: flex;
+   flex-direction: row;
+   div{
+      margin-right: 1rem;
+   }
+   div:hover{
+      background-color: var(--main-color-light);
+      border-radius: .5rem;
+      color: var(--white-color);
+   }
+}
+
+/*================= MAIN ================*/
+.main{
+   overflow: hidden;
+}

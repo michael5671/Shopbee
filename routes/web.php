@@ -42,6 +42,12 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\MainAuthenticate::class)
     Route::get('/customers/{customer}', [\App\Http\Controllers\admin\AdminController::class, 'CustomerContext'])->name('customers.show');
     Route::get('/orders', [App\Http\Controllers\admin\AdminController::class, 'Orders'])->name('orders');
     Route::get('/orders/{order_id}', [\App\Http\Controllers\admin\AdminController::class, 'OrderContext'])->name('orders.show');
+    Route::get('/product_management', [App\Http\Controllers\admin\BookController::class, 'index'])->name('product_management');
+    Route::get('/create', [App\Http\Controllers\admin\BookController::class, 'create'])->name('create');
+    Route::post('/store', [App\Http\Controllers\admin\BookController::class, 'store'])->name('store');
+    Route::get('/{book}/edit', [App\Http\Controllers\admin\BookController::class, 'edit'])->name('edit');
+    Route::post('/book/{book}', [App\Http\Controllers\admin\BookController::class, 'update'])->name('update');
+    Route::delete('/{book}/delete', [App\Http\Controllers\admin\BookController::class, 'delete'])->name('delete');
 });
 
 
@@ -58,3 +64,14 @@ Route::post('/insert-rating', [App\Http\Controllers\bookDetail\bookDetailCustome
 /*=================HOME========================== */
 use App\Http\Controllers\homeController;
 Route::get('/', [homeController::class, 'home'])->name('home');
+
+/*=================Shop========================== */
+Route::get('/shop', [App\Http\Controllers\shop\ShopController::class, 'index'])->name('shop.index');
+Route::post('/shop/filter', [App\Http\Controllers\shop\ShopController::class, 'filter'])->name('shop.filter');
+Route::post('/shop/search', [App\Http\Controllers\shop\ShopController::class, 'search'])->name('shop.search');
+Route::post('/shop/add', [App\Http\Controllers\shop\ShopController::class, 'add'])->name('shop.add');
+
+/*=================CART========================== */
+Route::get('/cart', [App\Http\Controllers\cart\CartController::class, 'showCart'])->name('cart.index');
+Route::post('/cart/update/{itemId}', [App\Http\Controllers\cart\CartController::class, 'updateCartItem'])->name('cart.update');
+Route::delete('/cart/remove/{itemId}', [App\Http\Controllers\cart\CartController::class, 'removeFromCart'])->name('cart.remove');
