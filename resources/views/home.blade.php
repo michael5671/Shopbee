@@ -46,7 +46,7 @@
         <div class="bestseller col-sm-6 mb-4 mb-sm-0">
           <div class="card">
             <img  class="card-img" src="{{asset('frontend/images/highlight1.jpg')}}" alt="">
-            <a href="#" class="content card-img-overlay">
+            <a href="/shop?sort=Most+popular" class="content card-img-overlay">
               <h4 class="card-title m-1">Best Seller Books</h4>
               <p class="card-text">Of the month</p>
             </a>
@@ -56,7 +56,7 @@
         <div class="feature col-sm-6 mb-4 mb-sm-0">
           <div class="card">
             <img class="card-img" src="{{asset('frontend/images/highlight2.jpg')}}" alt="">
-            <a href="#" class="content card-img-overlay">
+            <a href="/shop?sort=Newest" class="content card-img-overlay">
               <h4 class="card-title m-1">Feature Book</h4>
               <p class="card-text">Of the month</p>
             </a>
@@ -76,9 +76,9 @@
             <div class="col">
                 <div class="genres card-item">
                     <div class="genres_img ratio-3x4 .img-fluid mb-2">
-                        <a href="#"><img src="{{asset("frontend/images/genres_$key.jpg")}}" alt="img"></a>
+                        <a href="/shop?genres[]={{$genre->GENRES_NAME}}&sort=Newest"><img src="{{asset("frontend/images/genres_$key.jpg")}}" alt="img"></a>
                     </div>
-                    <a href="#">
+                    <a href="/shop?genres[]={{$genre->GENRES_NAME}}&sort=Newest">
                         <p class="genres_name fs-5 mt-3">{{$genre->GENRES_NAME}}</p>
                     </a>
                 </div>

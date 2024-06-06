@@ -55,12 +55,12 @@
                     </div>
                 <div class="row mt-4">
                     <div class="col">x{{$item->QUANTITY}}</div>
-                    <div class="col-auto align-text-end"> {{$item->PRICE}}VND</div>
+                    <div class="col-auto align-text-end"> {{$item->PRICE}}$</div>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-    <div class = "roboto-regular fs-4 purple text-end mx-4">Total: {{$order->TOTAL_PRICE}}VND</div>
+    <div class = "roboto-regular fs-4 purple text-end mx-4">Total: {{$order->TOTAL_PRICE}}$</div>
 
 @endsection

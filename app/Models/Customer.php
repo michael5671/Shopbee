@@ -49,10 +49,14 @@ class Customer extends Model implements Authenticatable
         return null;
     }
     protected $fillable = [
-        'username',
-        'email',
-        'password',
-        'cart_id',
-        'wishlist_id'
+        'USERNAME',
+        'EMAIL',
+        'PASSWORD',
+        'CART_ID',
+        'WISHLIST_ID'
     ];
+    public function cart()
+    {
+        return $this->hasOne(Cart::class, 'CART_ID', 'CART_ID');
+    }
 }

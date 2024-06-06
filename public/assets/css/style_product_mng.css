@@ -1,0 +1,164 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+}
+
+.btn-add-product {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 165px;
+    height: 56px;
+    background-color: #800080;
+    color: #FCE899;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.btn-add-product i {
+    margin-right: 10px;
+}
+.btn-add-product:hover {
+    background-color: #6f42c1;
+    color: white;
+}
+.nav-link {
+    color: #6f42c1;
+}
+.nav-link:hover {
+    text-decoration: underline;
+}
+.table img {
+    width: 68px;
+    height: 80px;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #9B2896;
+    color: #F8EAA2;
+    padding: 20px;
+}
+
+#title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #F8EAA2;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu .menu-item {
+    position: relative;
+    margin-bottom: 10px;
+    color: #F8EAA2;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.main-menu .menu-item i {
+    margin-right: 10px;
+}
+
+.main-menu .menu-item .arrow {
+    position: absolute;
+    right: 10px;
+    color: #F8EAA2;
+    font-size: 16px;
+    padding-top: 1.5px;
+}
+
+#product-management {
+    padding-bottom: 10px;
+    font-size: 17.5px;
+}
+
+.sub-menu {
+    display: none;
+    padding-left: 20px;
+    background-color: #9B2896;
+    color: #F8EAA2;
+    list-style-type: none;
+    margin: 0;
+}
+
+a {
+    color: #F8EAA2;
+    text-decoration: none;
+}
+
+.menu-item.active,
+.menu-item:hover {
+    background-color: #72216F;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Form and button styles */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group label {
+    flex: 1 1 30%;
+    padding-right: 10px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    flex: 1 1 70%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px; /* Optional: add margin if needed */
+}
+
+button {
+    padding: 15px 20px;
+    background-color: #9B2896;
+    color: #F8EAA2;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #72216F;
+}
+
+/* Genres */
+.selected-genres {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.selected-genre {
+    background-color: #9B2896;
+    color: #F8EAA2;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.selected-genre:hover {
+    background-color: #72216F;
+}

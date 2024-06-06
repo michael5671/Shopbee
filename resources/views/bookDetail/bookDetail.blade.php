@@ -46,10 +46,10 @@
                 <i class = "bx bx-search-alt fs-4"></i>
             </div>
             <div id="cart-btn" class = "p-1">
-                <i class = "bx bx-cart-alt fs-4"></i>
+                <a href="{{route('cart.index')}}">  <i class = "bx bx-cart-alt fs-4"></i></a>
             </div>
             <div id="user-btn" class = "p-1">
-                <a href="{{route('login')}}"><i class = "bx bx-user-circle fs-4 @if(Auth::check())text-primary @endif"></i></a>
+                <a href="{{route('profile')}}"><i class = "bx bx-user-circle fs-4 @if(Auth::check())text-primary @endif"></i></a>
             </div>
         </li>
 
@@ -362,6 +362,7 @@
                 <button class="quantity-button col-4" id="increase">+</button>
             </div>
             <div class="button">
+                <a href="{{route('login')}}">
               <button class="cart-btn col-5" style="margin-right: 1.5rem"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 35 36" fill="none">
                   <path d="M15.3125 30.9585C16.5206 30.9585 17.5 29.9791 17.5 28.771C17.5 27.5629 16.5206 26.5835 15.3125 26.5835C14.1044 26.5835 13.125 27.5629 13.125 28.771C13.125 29.9791 14.1044 30.9585 15.3125 30.9585Z" fill="#FCFCFC"/>
                   <path d="M25.5205 30.9585C26.7286 30.9585 27.708 29.9791 27.708 28.771C27.708 27.5629 26.7286 26.5835 25.5205 26.5835C24.3124 26.5835 23.333 27.5629 23.333 28.771C23.333 29.9791 24.3124 30.9585 25.5205 30.9585Z" fill="#FCFCFC"/>
@@ -369,7 +370,9 @@
                   <path d="M14.5837 25.1252H26.2503C26.5441 25.1243 26.8308 25.0347 27.0728 24.8682C27.3148 24.7017 27.5008 24.4659 27.6066 24.1918L31.7337 13.4585H28.6128L25.2441 22.2085H15.5607L9.01283 6.50225C8.79082 5.97005 8.41603 5.5156 7.93583 5.19633C7.45563 4.87706 6.89156 4.7073 6.31491 4.7085H2.91699V7.62517H6.31491L13.242 24.221C13.3514 24.4873 13.5372 24.7153 13.7759 24.8762C14.0147 25.0371 14.2957 25.1237 14.5837 25.1252Z" fill="#FCFCFC"/>
                   </svg> Add to cart
                 </button>
+
               <button class="buy-btn col-5">Buy now</button>
+                </a>
             </div>
 
             </div>
