@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\login\LoginController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +70,7 @@ Route::get('/profile/order',[ProfileController::class,'listorder'])->name('profi
 Route::post('/profile/update/{id}',[ProfileController::class,'update']);
 Route::post('/profile/update_pass/{id}',[ProfileController::class,'updatePass']);
 });
+
+Route::get('/payment/index', [PaymentController::class, 'index']);
+Route::post('/payment/submit', [PaymentController::class, 'submit']);
+

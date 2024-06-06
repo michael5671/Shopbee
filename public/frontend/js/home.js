@@ -3,7 +3,7 @@ let dropdown = document.getElementById('dropdown');
 let search = document.querySelector('.header .nav .search_box_hide');
 document.querySelector('#search-btn').onclick = () =>{
    search.classList.toggle('active');
-   dropdown.classList.remmove('show');
+   dropdown.classList.remove('show');
 }
 
 /*=============== SHOW CART ===============*/
@@ -70,7 +70,7 @@ window.addEventListener('scroll', scrollUp);
 /*====================================================================================================================*/
 
 /*================================================== TABS -======================================*/
-if($('.tab-wrap' )[0] ){
+if($('.tab-wrap')[0] ){
     $('.tab-wrap' )
         .on('click', '.tab-nav .item', switchTab )
         .find( '.tab-nav .item:first-child' ).trigger( 'click' );

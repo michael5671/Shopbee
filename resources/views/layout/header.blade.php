@@ -37,7 +37,7 @@
                 <i class = "bx bx-cart-alt fs-4"></i>
             </div>
             <div id="user-btn" class = "p-1">
-                <a href="{{route('login')}}"><i class = "@if(Auth::check()) bx bxs-user-circle @else bx bx-user-circle @endif fs-4 "></i></a>
+                <a href="{{route('profile')}}"><i class = "@if(Auth::check()) bx bxs-user-circle @else bx bx-user-circle @endif fs-4 "></i></a>
             </div>
         </li>
         @if(Auth::check())
@@ -48,7 +48,7 @@
                 <div class="cart_img col-3">
                     <a href="#"><img src ="{{$book->IMAGE_LINK}}" class="img-fluid" alt="img"></a>
                 </div>
-                <span class="book_title col-5"><a href="#">{{$book->book_name}}</a></span>
+                <span class="book_title col-5"><a href="#">{{$book->NAME}}</a></span>
                 <span class="book_price col-3">{{$book->PRICE*$book->QUANTITY}}$</span>
                 <span class="book_price col-3">x{{$book->QUANTITY}}</span>
             </div>
@@ -61,7 +61,7 @@
         @if(Auth::check())
         <li class="profile p-3 px-md-3 shadow" id="profile">
             <div class = "d-flex flex-column justify-content-around">
-                <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/014/194/216/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg" alt="img"></a>
+                <a href="{{route('profile')}}"><img src="https://static.vecteezy.com/system/resources/previews/014/194/216/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg" alt="img"></a>
                 <a class = "h4 align-self-center name" href="{{route('profile')}}">{{Auth::user()->USERNAME}}</a>
             </div>
             <div class = "row g-4">

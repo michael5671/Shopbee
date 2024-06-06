@@ -28,4 +28,6 @@
 @include ('layout.footer')
 
 </body>
+<script src="{{asset('frontend/js/home.js')}}"></script>
+
 </html>

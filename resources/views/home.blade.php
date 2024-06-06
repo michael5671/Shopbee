@@ -29,7 +29,7 @@
         <div class="container">
           <div class="row g-5">
             <div class="intro_text col-md-6 col-12">
-                <h1 class = "intro_title display-3 mb-3">Start a new adventure with our universe</h1>
+                <h1 class = "intro_title display-3 mb-3">Start a new adventure with Verbify's universe</h1>
                 <p class = "intro_subtitle h5 mb-3">Once upon a time, in a faraway kingdom, there lived a breathtakingly beautiful princess...</p>
                 <button class="more-btn">Explore more</button>
             </div>
@@ -136,7 +136,7 @@
 
     <!--==============SALE==================-->
     <section class="sale">
-      <div class="container">
+      hp <div class="container">
         <div class="sale-row row row-cols-1 row-cols-md-3">
           <div class="hotsale col">
             <div class="list_title">
@@ -195,7 +195,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!--=============== MAIN JS ===============-->
-  <script src="{{asset('frontend/js/home.js')}}"></script>
 
 
   <!--=============== BOOSTRAP ===============-->

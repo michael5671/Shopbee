@@ -48,4 +48,6 @@
             @endif
         </div>
     </div>
+    <script src="{{asset('frontend/js/home.js')}}"></script>
+
 @stop

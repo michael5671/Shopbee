@@ -22,7 +22,7 @@
     <div class="content bg-gray">
         <div>
             @include('layout.header')
-            <div class="d-flex p-5 pt-10">
+            <div class="d-flex pe-5 pt-10">
                 <div class="w-30  p-3">
                     <div class="d-flex">
                         <div class="me-3">

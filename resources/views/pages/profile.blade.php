@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="w-30">
-                    <h4 class="mb-4">Phonenumber & Email</h4>
+                    <h4 class="mb-4">Phone number & Email</h4>
                     <!-- Error message section -->
                     @if (session('error'))
                         <div class="alert alert-danger">
@@ -226,4 +226,6 @@
             </form>
         </div>
     </div>
+    <script src="{{asset('frontend/js/home.js')}}"></script>
+
 @stop
