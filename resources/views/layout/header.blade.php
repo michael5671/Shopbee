@@ -40,25 +40,24 @@
                 <a href="{{route('login')}}"><i class = "@if(Auth::check()) bx bxs-user-circle @else bx bx-user-circle @endif fs-4 "></i></a>
             </div>
         </li>
+        @if(Auth::check())
 
         <li class="dropdown p-2 px-md-3 shadow" id="dropdown">
-            @foreach(DB::select('CALL get_cart_items(?)', [Auth::user()->CUSTOMER_ID]) as $book)
+            @foreach(DB::select('CALL get_cart_items_by_cart_id(?)', [Auth::user()->CART_ID]) as $book)
             <div class="cart-item p-1">
                 <div class="cart_img col-3">
-                    <a href="#"><img src ="https://i.pinimg.com/564x/90/d0/39/90d03955f644a8b67e52eaf9cf1f2891.jpg" class="img-fluid" alt="img"></a>
+                    <a href="#"><img src ="{{$book->IMAGE_LINK}}" class="img-fluid" alt="img"></a>
                 </div>
-                <span class="book_title col-5"><a href="#">{{$book->name}}</a></span>
-                <span class="book_price col-3">25.000đ</span>
-                <button id = "delete-btn" class="xoa col-1">
-                    <i class='bx bxs-trash-alt'></i>
-                </button>
+                <span class="book_title col-5"><a href="#">{{$book->book_name}}</a></span>
+                <span class="book_price col-3">{{$book->PRICE*$book->QUANTITY}}$</span>
+                <span class="book_price col-3">x{{$book->QUANTITY}}</span>
             </div>
             @endforeach
             <div class="summary mt-2">
-                <p> 3 <span>total products</span></p>
                 <button class="btn-order">Go to cart</button>
             </div>
         </li>
+        @endif
         @if(Auth::check())
         <li class="profile p-3 px-md-3 shadow" id="profile">
             <div class = "d-flex flex-column justify-content-around">
