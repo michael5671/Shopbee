@@ -38,10 +38,10 @@ class LoginController extends Controller
         ]);
 
         $user = Customer::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => $request->password,
-            'cart_id' =>0,
+            'USERNAME' => $request->username,
+            'EMAIL' => $request->email,
+            'PASSWORD' => $request->password,
+            'CART_ID' =>null,
         ]);
 
         $cart = Cart::create([
@@ -51,7 +51,7 @@ class LoginController extends Controller
         $user->save();
 
         Auth::login($user);
-        return redirect()->intended('/home');
+        return redirect()->intended('/');
     }
     public function Logout(Request $request): \Illuminate\Http\RedirectResponse
     {

@@ -26,16 +26,10 @@ class CartController extends Controller
     {
         $itemId = (int) $itemId;
 
-        $user = Auth::user();
-        $cart = $user->cart;
+        DB::delete('DELETE FROM cart_has WHERE book_id = ? AND CART_ID=?', [$itemId,Auth::user()->CART_ID]);
 
-        $deleted = Cart::find($cart->CART_ID)->books->find($itemId)->item->delete();
 
-        if ($deleted) {
-            return response()->json(['success' => 'Data is successfully deleted']);
-        }
-
-        return response()->json(['error' => 'Data is not successfully deleted']);
+        return response()->json(['success' => 'Data is successfully deleted']);
     }
     private function getSuggestedBooks($cart)
     {
@@ -67,16 +61,16 @@ class CartController extends Controller
 
     public function updateCartItem(Request $request, $bookId)
     {
-        $cart = Auth::user()->cart;
-
-        $cartItem = Cart::find($cart->CART_ID);
-
+        $cartItem = DB::table('cart_has')->where(['cart_id' => Auth::user()->CART_ID, 'book_id' => $bookId])->first();
         if ($cartItem) {
             $quantity = $request->quantity;
             if ($quantity <= 0) {
-                Cart::find($cart->CART_ID)->books->find($itemId)->item->delete();
+                DB::delete('DELETE FROM cart_has WHERE book_id = ? AND CART_ID=?', [$bookId,$cartItem->CART_ID]);
             } else {
-                $cartItem->books()->updateExistingPivot($bookId, ['QUANTITY' => $quantity]);
+
+                DB::table('cart_has')
+                    ->where('BOOK_ID', $cartItem->BOOK_ID)->where('CART_ID', $cartItem->CART_ID)
+                    ->update(['QUANTITY' => $quantity]);
             }
             return response()->json(['success' => 'Data is successfully updated']);
         }

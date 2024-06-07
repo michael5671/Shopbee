@@ -26,11 +26,11 @@ class bookDetailCustomerController extends Controller
             ->first();
 
         /*==============================IMAGE================== */
-        $booksImage = DB::select("select *
-            from book_image
-            where book_id = '$book_id'
-        ");
-
+        $booksImage = DB::table('book_image')
+        ->where('book_image.BOOK_ID', $book_id)
+        ->limit(4)
+        ->get();
+        
         /*==============================BOOK SIMILAR================== */
         $genresSimilar = DB::table('book_belong')
             ->where('BOOK_ID', '=', $book_id)
@@ -81,7 +81,7 @@ class bookDetailCustomerController extends Controller
         return view('bookDetail.bookDetailCustomer', compact('book','customer','booksImage','booksSimilar','point','percentages', 'customerReview'));
     }public function bookDetailCustomer1($book_id)
     {
-        DB::statement('CALL add_book_to_cart(?,?)', [Auth::user()->CUSTOMER_ID, $book_id]);
+        DB::statement('CALL add_book_to_cart_by_cart_id(?,?,?)', [Auth::user()->CART_ID, $book_id,2]);
         $customer_id = Auth::id();
         /*==============================INFO================== */
         $book = DB::table('book')
@@ -170,11 +170,10 @@ class bookDetailCustomerController extends Controller
         return response()->json(['success' => 'Rating inserted successfully!'], 200);
     }
 
-    public function addbook(Request $request,$bookid){
-        dd($request);
-        DB::statement('CALL add_book_to_cart_by_cart_id(?)', [Auth::user()->CART_ID, $bookid]);
-        // Chuyển hướng về trang trước đó với thông báo thành công
-        return redirect()->back()->with('success', 'Đã thêm sách vào giỏ hàng!');
+    public function addbook(Request $request){
+        DB::statement('CALL add_book_to_cart_by_cart_id(?,?,?)', [Auth::user()->CART_ID,$request->BOOK_ID,$request->COUNT]);
+
+        return redirect()->back();
     }
 
 }

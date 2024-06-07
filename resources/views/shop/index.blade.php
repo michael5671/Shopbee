@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar</title>
+    <title>Shop</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/styles_1.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
+
     <div class="">
 
        @include('layout.header')
@@ -30,6 +31,7 @@
                     @foreach($genres as $index => $genre)
                         @if($index < 5)
                             <li>
+                                @if($genre->GENRES_NAME=="Psychology") @continue @endif
                                 <input type="checkbox" id="genre{{ $index }}" name="genres[]" value="{{ $genre->GENRES_NAME }}">
                                 <label for="genre{{ $index }}">{{ $genre->GENRES_NAME }}</label>
                             </li>
@@ -82,7 +84,7 @@
                 <h4>Price</h4>
                 <ul>
                     <li><input type="checkbox" id="price1" name="price" value="0-10"  @if( $selectedPrice === '0-10') checked = "checked" @endif> <label for="price1">Under $10</label></li>
-                    <li><input type="checkbox" id="price2" name="price" value="10-20" @if( $selectedPrice === '10-20') checked = "checked" @endif> <label for="price1"> <label for="price2">$10 - $20</label></li>
+                    <li><input type="checkbox" id="price2" name="price" value="10-20" @if( $selectedPrice === '10-20') checked = "checked" @endif> <label for="price1"> <label for="price2">$10 - $20</label></label></li>
                     <li><input type="checkbox" id="price3" name="price" value="20-30" > <label for="price3">$20 - $30</label></li>
                     <div class="collapse" id="morePriceFilters">
                         <ul>
@@ -99,11 +101,24 @@
     </aside>
 
 
-    <div class="main-content col-12 col-md-9 mt-5 ml-2">
-
-        <div class="row row-cols-4 " id="book-list">
+    <div class="main-content mt-5 ml-2">
+        <div class="row d-flex justify-content-end mb-3 ">
+            <div class="sort-dropdown1">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false" onClick="toggleShowMore(this)">Sort By: Newest</button>
+                    <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                        <li><a class="dropdown-item" href="#" data-value="Newest">Newest</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="Price (low to high)">Price (low to high)</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="Price (high to low)">Price (high to low)</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="Most popular">Most popular</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="book-list">
+            <div class = "row">
                     @foreach ($books as $book)
-                        <div class="col book_item">
+                        <div class="col book-item bg-grey m-4 col-3" >
                         @if (!empty($book->images->first()->IMAGE_LINK))
                             <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
                         @else
@@ -116,104 +131,14 @@
                             </div>
                         </div>
                     @endforeach
+            </div>
         </div>
-
     </div>
 </div>
 
 <div class="">
             {{ $books->onEachSide(5)->links('shop.my-paginate') }}
 </div>
-
-    <!--==============FOOTER==================-->
-  <footer class="footer container-fluid text-center text-lg-start">
-    <!-- Grid container -->
-    <div class="container p-4">
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="outro col-lg-6 col-md-12 mb-4 mb-md-0">
-          <a href="#" class = "footer_brand h1">Verbify</a>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-            molestias. Fugiat pariatur maxime quis culpa corporis vitae.
-          </p>
-          <div class="icons footer_icons text-center fs-3">
-            <a href="#" class="btn-facebook mx-1">
-              <i class='bx bxl-facebook-circle'></i>
-            </a>
-            <a href="#" class="btn-github mx-1">
-              <i class='bx bxl-github'></i>
-            </a>
-            <a href="#" class="btn-figma mx-1">
-              <i class='bx bxl-figma'></i>
-            </a>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5>Our Contact</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!">
-                <i class='bx bxs-home'></i>
-                University of Information Technology
-              </a>
-            </li>
-            <li>
-              <a href="#!">
-                <i class='bx bxs-phone'></i>
-                (+84) 8484 14 64646
-              </a>
-            </li>
-            <li>
-              <a href="#!">
-                <i class='bx bxl-gmail'></i>
-                verbify@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5>Links</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <a href="#">Shop</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-      </div>
-      <!--Grid row-->
-    </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class=" copyright p-2">
-      © All Rights Reserved - 2024 - Group 10
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!--=============== SCROLL UP ===============-->
-  <a href="#" class="scrollup shadow" id="scroll-up">
-    <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-  </a>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -299,6 +224,7 @@
               }
         });
     </script>
-</body>
+    @include('layout.footer')
 
+</body>
 </html>
