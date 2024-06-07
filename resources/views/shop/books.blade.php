@@ -3,9 +3,9 @@
 @foreach ($books as $book)
                         <div class="col book_item ">
                         @if (!empty($book->images->first()->IMAGE_LINK))
-                            <a href="#" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
+                            <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
                         @else
-                            <a href="#" class="book_img"><img src="https://via.placeholder.com/150" alt="{{ $book->name }}"></a>
+                            <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="https://via.placeholder.com/150" alt="{{ $book->name }}"></a>
                         @endif
                             <div class="book_info px-4 py-2">
                                 <span class="book_title fs-5"><a href="#">{{$book->NAME}}</a></span>
@@ -16,4 +16,4 @@
                                 </button>
                             </div>
                         </div>
-                    @endforeach
+@endforeach

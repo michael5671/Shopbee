@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!--=============== CSS ===============-->
   <link rel="stylesheet" href="{{asset('frontend/css/product_detail.css')}}">
-  <title>Document</title>
+  <title>{{$book->NAME}}</title>
 </head>
 <body>
 <!--==============HEADER==================-->
@@ -321,24 +321,27 @@
                         </div>
                     </div>
                   </div>
+                  <form action="{{Route::currentRouteName()}}" method="POST">
+                      @csrf
               <div class="quantity-container col-3 mb-5">
-                  <button class="quantity-button col-4" id="decrease">-</button>
-                  <input type="number" id="quantity" class="quantity-input col-4" value="1" min="1">
-                  <button class="quantity-button col-4" id="increase">+</button>
+                  <input name ="BOOK_ID" style="display: none; " value="{{$book->BOOK_ID}}">
+                  <button type="button" class="quantity-button col-4" id="decrease">-</button>
+                  <input type="number" name="COUNT" id="quantity" class="quantity-input col-4" value="1" min="1">
+                  <button type="button" class="quantity-button col-4" id="increase">+</button>
               </div>
               <div class="button">
-                  <a href="{{route('book.detail.user.add',$book->BOOK_ID)}}">
-                <button class="cart-btn col-5" style="margin-right: 1.5rem"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 35 36" fill="none">
+                <button type="submit" id="AddToCartButton" class="cart-btn col-5" style="margin-right: 1.5rem"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 35 36" fill="none">
                     <path d="M15.3125 30.9585C16.5206 30.9585 17.5 29.9791 17.5 28.771C17.5 27.5629 16.5206 26.5835 15.3125 26.5835C14.1044 26.5835 13.125 27.5629 13.125 28.771C13.125 29.9791 14.1044 30.9585 15.3125 30.9585Z" fill="#FCFCFC"/>
                     <path d="M25.5205 30.9585C26.7286 30.9585 27.708 29.9791 27.708 28.771C27.708 27.5629 26.7286 26.5835 25.5205 26.5835C24.3124 26.5835 23.333 27.5629 23.333 28.771C23.333 29.9791 24.3124 30.9585 25.5205 30.9585Z" fill="#FCFCFC"/>
                     <path d="M18.9581 19.2919H21.8747V14.9314H26.2352V12.0148H21.8747V7.66895H18.9581V12.0148H14.5977V14.9314H18.9581V19.2919Z" fill="#FCFCFC"/>
                     <path d="M14.5837 25.1252H26.2503C26.5441 25.1243 26.8308 25.0347 27.0728 24.8682C27.3148 24.7017 27.5008 24.4659 27.6066 24.1918L31.7337 13.4585H28.6128L25.2441 22.2085H15.5607L9.01283 6.50225C8.79082 5.97005 8.41603 5.5156 7.93583 5.19633C7.45563 4.87706 6.89156 4.7073 6.31491 4.7085H2.91699V7.62517H6.31491L13.242 24.221C13.3514 24.4873 13.5372 24.7153 13.7759 24.8762C14.0147 25.0371 14.2957 25.1237 14.5837 25.1252Z" fill="#FCFCFC"/>
                     </svg> Add to cart
                   </button>
+                  <a href="/payment/index">
+                <button type="button" class="buy-btn col-5">Buy now</button>
                   </a>
-                <button class="buy-btn col-5">Buy now</button>
               </div>
-
+                  </form>
               </div>
             </div>
           </div>
@@ -806,6 +809,7 @@
         });
         updateTotalProducts();
     });
+
 </script>
   <!--=============== BOOSTRAP ===============-->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -1,7 +1,7 @@
 .book_title{
     display: block;
   }
- 
+
   .book_title a{
     color: var(--main-color);
     font-weight: bold;
@@ -14,11 +14,11 @@
     margin-bottom: .3rem;
     line-height: 1.4rem;
   }
-  
+
   .book_title:hover a{
     color: var(--main-color-light);
   }
- 
+
   .book_author{
     word-break: break-word;
     overflow: hidden;
@@ -30,7 +30,7 @@
     max-height: 1.8rem;
     margin-bottom: .3rem;
   }
- 
+
   .book_price{
     color: var(--main-color);
     font-weight: bold;
@@ -42,13 +42,20 @@
     padding-top: 2rem;
     margin-bottom: 3rem;
     overflow: hidden;
- } 
- 
- .book_item:hover{
+ }
+.bg-grey{
+    background-color: var(--light-bg);
+    border-radius: .75rem;
+    transition: transform .7s, box-shadow .7s;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+
+}
+ .book-item:hover{
     box-shadow:0px 0px 10px rgba(24, 24, 24, 0.3);
     transform: scale(1.07);
  }
- 
+
  .book_img{
     height: 200px;
     margin-bottom: .75rem;
@@ -58,19 +65,19 @@
     justify-content: center;
     overflow: hidden;
   }
- 
+
   .book_img img{
     display: block;
     max-width: 200px;
     max-height: 100%;
   }
- 
+
   .book_info{
     position: relative;
     display: flex;
     flex-direction: column;
   }
- 
+
   .products {
     .book_price{
        margin-bottom: .75rem;
@@ -81,7 +88,7 @@
        max-height: 3rem;
     }
   }
-  
+
   .cart-btn{
     color: var(--main-color);
     position: absolute;
@@ -89,11 +96,11 @@
     right: 1rem;
     text-align: center;
   }
- 
+
   .cart-btn:hover i{
     color: var(--main-color-light);
   }
-  
+
   .view-btn{
     background-color: var(--second-color);
     text-align: center;
@@ -102,7 +109,7 @@
     color: var(--dark-color);
     font-weight: bold;
   }
- 
+
   .view-btn:hover{
     background-color: var(--fourth-color-dark);
     color:var(--white-color);
