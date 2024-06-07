@@ -60,7 +60,6 @@ use App\Http\Controllers\bookDetail\bookDetailController;
 Route::get('/book/{book_id}', [App\Http\Controllers\bookDetail\bookDetailController::class, 'bookDetail'])->name('book.detail.guest');
 Route::get('/book/user/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer'])->name('book.detail.user');
 Route::post('/book/user/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'addbook'])->name('add.book');
-Route::get('/book/users/{book_id}', [App\Http\Controllers\bookDetail\bookDetailCustomerController::class, 'bookDetailCustomer1'])->name('book.detail.user.add');
 Route::get('/book/{book_id}/route', [App\Http\Controllers\bookDetail\bookDetailController::class, 'index'])->name('book.detail');
 
 use App\Http\Controllers\bookDetail\bookDetailCustomerController;

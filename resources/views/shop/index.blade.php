@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
-    
+
     <div class="">
 
        @include('layout.header')
@@ -31,6 +31,7 @@
                     @foreach($genres as $index => $genre)
                         @if($index < 5)
                             <li>
+                                @if($genre->GENRES_NAME=="Psychology") @continue @endif
                                 <input type="checkbox" id="genre{{ $index }}" name="genres[]" value="{{ $genre->GENRES_NAME }}">
                                 <label for="genre{{ $index }}">{{ $genre->GENRES_NAME }}</label>
                             </li>
@@ -100,10 +101,24 @@
     </aside>
 
 
-    <div class="main-content mt-5 pt-5 ml-2">
-        <div class="grid" id="book-list">
+    <div class="main-content mt-5 ml-2">
+        <div class="row d-flex justify-content-end mb-3 ">
+            <div class="sort-dropdown1">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false" onClick="toggleShowMore(this)">Sort By: Newest</button>
+                    <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                        <li><a class="dropdown-item" href="#" data-value="Newest">Newest</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="Price (low to high)">Price (low to high)</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="Price (high to low)">Price (high to low)</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="Most popular">Most popular</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="book-list">
+            <div class = "row">
                     @foreach ($books as $book)
-                        <div class="col book-item bg-grey m-2 g-col-4" >
+                        <div class="col book-item bg-grey m-4 col-3" >
                         @if (!empty($book->images->first()->IMAGE_LINK))
                             <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
                         @else
@@ -116,6 +131,7 @@
                             </div>
                         </div>
                     @endforeach
+            </div>
         </div>
     </div>
 </div>

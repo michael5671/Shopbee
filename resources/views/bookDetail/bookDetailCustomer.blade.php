@@ -48,7 +48,7 @@
                   <input type="number" name="COUNT" id="quantity" class="quantity-input col-4" value="1" min="1">
                   <button type="button" class="quantity-button col-4" id="increase">+</button>
               </div>
-              <div class="button">
+              <div class="button1">
                 <button type="submit" id="AddToCartButton" class="cart-btn col-5" style="margin-right: 1.5rem"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 35 36" fill="none">
                     <path d="M15.3125 30.9585C16.5206 30.9585 17.5 29.9791 17.5 28.771C17.5 27.5629 16.5206 26.5835 15.3125 26.5835C14.1044 26.5835 13.125 27.5629 13.125 28.771C13.125 29.9791 14.1044 30.9585 15.3125 30.9585Z" fill="#FCFCFC"/>
                     <path d="M25.5205 30.9585C26.7286 30.9585 27.708 29.9791 27.708 28.771C27.708 27.5629 26.7286 26.5835 25.5205 26.5835C24.3124 26.5835 23.333 27.5629 23.333 28.771C23.333 29.9791 24.3124 30.9585 25.5205 30.9585Z" fill="#FCFCFC"/>

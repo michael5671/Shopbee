@@ -37,7 +37,7 @@
         </li>
         @if(Auth::check())
 
-        <li class="dropdown p-2 px-md-3 shadow" id="dropdown">
+        <li class="dropdown dropdown1 p-2 px-md-3 shadow" id="dropdown">
             @foreach(DB::select('CALL get_cart_items_by_cart_id(?)', [Auth::user()->CART_ID]) as $book)
             <div class="cart-item p-1">
                 <div class="cart_img col-3">
@@ -49,7 +49,9 @@
             </div>
             @endforeach
             <div class="summary mt-2">
+                <a href="/cart">
                 <button class="btn-order">Go to cart</button>
+                </a>
             </div>
         </li>
         @endif
