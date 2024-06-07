@@ -1,0 +1,102 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=League+Spartan:wght@300&display=swap');
+
+:root{
+  /*========== Colors ==========*/
+
+  --main-color: hsl(302, 60%, 33%);
+  --main-color-alt: hsl(301, 59%, 23%);
+  --main-color-dark: #462e74;
+  --main-color-light: rgba(204, 148, 213, 1);
+  --main-color-lighter: hsl(314, 60%, 62%);
+
+  --second-color: rgba(247, 233, 161, 1);
+
+  --third-color: rgba(9, 177, 171, 1);
+
+  --fourth-color:hsl(30, 100%, 82%);
+  --fourth-color-dark:hsl(14, 91%, 50%);
+  --fourth-color-dark-alt:hsl(14, 91%, 45%);
+
+  --white-color: hsl(0, 0%, 100%);
+  --dark-color: hsl(0, 8%, 28%);
+
+  --light-bg:#eee;
+  --black:#2c3e50;
+  --border:.1rem solid rgba(0,0,0,.2);
+
+  /*========== Font and typography ==========*/
+  --body-font: "League Spartan", sans-serif;
+  --second-font: "Fredoka", sans-serif;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+
+*{
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none;
+   border:none;
+   text-decoration: none;
+}
+
+body{
+   font-family: var(--body-font);
+}
+
+a{
+   text-decoration: none;
+}
+
+ul, li{
+   text-decoration: none;
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+}
+
+img{
+   max-width: 100%;
+   height: auto;
+   object-fit: cover;
+}
+
+.button:hover{
+   background-color: var(--dark-color);
+}
+
+/*===============  FOOTER ===================*/
+.footer{
+    background-color: var(--second-color);
+    color: var(--dark-color);
+    padding: 0;
+    a:hover{
+       color: var(--main-color-light);
+    }
+ }
+ 
+ .footer_brand{
+    font-family: var(--second-font);
+    color: var(--main-color);
+ }
+ 
+ .footer_icons a{
+    color: var(--dark-color);
+ }
+ 
+ .contact a, .links a{
+    color: var(--dark-color);
+ }
+ 
+ .contact h5, .links h5{
+    color: var(--main-color);
+ }
+ 
+ .copyright{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+ }
+ 

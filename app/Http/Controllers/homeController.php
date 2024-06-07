@@ -20,6 +20,7 @@ class HomeController extends Controller
                                 ->where('book_belong.genres_name', $genreName)
                                 ->groupBy('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE')
                                 ->select('book.BOOK_ID', 'book.NAME', 'book.AUTHOR', 'book.PRICE', DB::raw('MIN(book_image.IMAGE_LINK) AS IMAGE_LINK'))
+                                ->limit(8)
                                 ->get();
             }
 

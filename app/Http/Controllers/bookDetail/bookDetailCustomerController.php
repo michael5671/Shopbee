@@ -26,11 +26,11 @@ class bookDetailCustomerController extends Controller
             ->first();
 
         /*==============================IMAGE================== */
-        $booksImage = DB::select("select *
-            from book_image
-            where book_id = '$book_id'
-        ");
-
+        $booksImage = DB::table('book_image')
+        ->where('book_image.BOOK_ID', $book_id)
+        ->limit(4)
+        ->get();
+        
         /*==============================BOOK SIMILAR================== */
         $genresSimilar = DB::table('book_belong')
             ->where('BOOK_ID', '=', $book_id)

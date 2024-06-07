@@ -1,29 +1,7 @@
+<link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
 @extends('layout.user_MainStructure')
 @section('title', 'Home')
 @section('content')
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-
-  <!--=============== BOOTSTRAP ===============-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-  <!--=============== BOXICONS ===============-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
-  <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
-
-
-</head>
-<body>
-
-  <!--==============MAIN==================-->
-  <main class="main">
     <!--==============INTRO==================-->
     <section class="intro py-5">
         <div class="container">
@@ -118,7 +96,7 @@
                                   <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->IMAGE_LINK}}" alt="img"></a>
                                   <div class="book_info px-4 py-2">
                                     <span class="book_title fs-5"><a href="{{route('book.detail',$book->BOOK_ID)}}">{{$book->NAME}}</a></span>
-                                    <span class="book_author fs-5">{{ $book->AUTHOR }}</span>
+                                    <span class="book_author fs-5">{{$book->AUTHOR }}</span>
                                     <span class="book_price fs-5">${{$book->PRICE}}</span>
                                   </div>
                               </div>
@@ -130,7 +108,7 @@
             @endforeach
           </div>
         </div>
-        <a href="#" class = "view-btn fs-6">View more</a>
+        <a href="/shop" class = "view-btn fs-6">View more</a>
       </div>
     </section>
 
@@ -182,24 +160,8 @@
         </div>
       </div>
     </section>
-  </main>
-
-  <!--==============FOOTER==================-->
-
-  <!--=============== SCROLL UP ===============-->
-  <a href="#" class="scrollup shadow" id="scroll-up">
-    <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-  </a>
-
-  <!--============== JQUERY ===============-->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!--=============== MAIN JS ===============-->
-
-
-  <!--=============== BOOSTRAP ===============-->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-</body>
-</html>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{asset('frontend/js/home.js')}}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @endsection

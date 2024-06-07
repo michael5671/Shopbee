@@ -1,10 +1,9 @@
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet" href="{{ asset('css/default-font.css') }}">
+<link rel="stylesheet" href="{{asset('frontend/css/footer.css')}}">
 <footer class="footer container-fluid text-center text-lg-start">
-    <!-- Grid container -->
     <div class="container p-4">
-        <!--Grid row-->
         <div class="row">
-            <!--Grid column-->
             <div class="outro col-lg-6 col-md-12 mb-4 mb-md-0">
                 <a href="#" class = "footer_brand h1">Verbify</a>
                 <p>
@@ -23,9 +22,6 @@
                     </a>
                 </div>
             </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
             <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5>Our Contact</h5>
 
@@ -50,9 +46,6 @@
                     </li>
                 </ul>
             </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
             <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5>Links</h5>
 
@@ -71,15 +64,9 @@
                     </li>
                 </ul>
             </div>
-            <!--Grid column-->
         </div>
-        <!--Grid row-->
     </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
     <div class=" copyright p-2">
-        © All Rights Reserved - 2024 - Group 10
+        © All Rights Reserved - 2024 - Group 9
     </div>
-    <!-- Copyright -->
 </footer>

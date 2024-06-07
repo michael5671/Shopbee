@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -18,16 +17,57 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/default-font.css') }}">
-    <link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/user_MainStructure.css')}}">
 </head>
 <body >
 @include ('layout.header')
-<main >
+<main>
     @yield('content')
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="scrollup shadow" id="scroll-up">
+        <i class='bx bx-up-arrow-alt scrollup__icon'></i>
+    </a>
+    <style>
+        /*=============== SCROLL UP ===============*/
+        .scrollup{
+            position: fixed;
+            background: var(--main-color-light);
+            right: 1rem;
+            bottom: -20%;
+            display: inline-flex;
+            padding: .3rem;
+            border-radius: .25rem;
+            z-index: var(--z-tooltip);
+            opacity: .8;
+            transition: .4s;
+        }
+        
+        .scrollup__icon{
+            font-size: 1.25rem;
+            color: var(--white-color);
+        }
+        
+        .scrollup:hover{
+            background: var(--main-color-lighter);
+            opacity: 1;
+        }
+        
+        /* Show Scroll Up*/
+        .show-scroll{
+            bottom: 3rem;
+        }
+    </style>
+    <script>
+        /*=============== SHOW SCROLL UP ===============*/
+        let body = document.body;
+        function scrollUp(){
+        const scrollUp = document.getElementById('scroll-up');
+        if(this.scrollY >= 460) scrollUp.classList.add('show-scroll');
+        else scrollUp.classList.remove('show-scroll')
+        }
+        window.addEventListener('scroll', scrollUp);
+    </script>
 </main>
 @include ('layout.footer')
-
 </body>
-<script src="{{asset('frontend/js/home.js')}}"></script>
-
 </html>
