@@ -41,13 +41,6 @@
         <div class="xoa">Delete</div>
     </div>
 
-    @php
-        $total = 0;
-
-        foreach($cart as $item) {
-            $total += $item->QUANTITY *$item->PRICE;
-        }
-    @endphp
     @foreach($cart as $item)
             <div class="item_gio_hang">
                 <div class="box">
@@ -75,7 +68,7 @@
         @endforeach
 </div>
     <div class="summary-bar">
-      <div class="total-amount">Total: <span id="total-price">{{$total}}</span></div>
+      <div class="total-amount">Total: <span id="total-price"></span></div>
       <button class="btn-order" onclick="placeOrder()">Order</button>
   </div>
 
@@ -604,7 +597,8 @@ button{
                 total += itemPrice * quantity;
             }
         });
-        totalPriceElement.innerText = total.toLocaleString('en-US') + ' $';
+        total/=100;
+        totalPriceElement.innerText = (total.toLocaleString('en-US')) + ' $';
     }
 
     // Chọn hoặc bỏ chọn tất cả sản phẩm
@@ -635,7 +629,7 @@ button{
                 const item = e.target.closest('.item_gio_hang');
                 const itemPriceElement = item.querySelector('.giaban').innerText;
                 const itemPrice = parseInt(itemPriceElement.replace(' đ', '').replace(/\./g, ''));
-                item.querySelector('.tongtien').innerText = (itemPrice * parseInt(itemQuantity)).toLocaleString('vi-VN') + ' đ';
+                item.querySelector('.tongtien').innerText = ((itemPrice * parseInt(itemQuantity))/100).toLocaleString('vi-VN') + ' $';
                 updateTotal();
 
             let post =  JSON.stringify({quantity: itemQuantity, _token: "{{ csrf_token() }}"})
@@ -663,7 +657,7 @@ button{
                 const item = e.target.closest('.item_gio_hang');
                 const itemPriceElement = item.querySelector('.giaban').innerText;
                 const itemPrice = parseInt(itemPriceElement.replace(' đ', '').replace(/\./g, ''));
-                item.querySelector('.tongtien').innerText = (itemPrice * parseInt(itemQuantity)).toLocaleString('vi-VN') + ' đ';
+                item.querySelector('.tongtien').innerText = ((itemPrice * parseInt(itemQuantity))/100).toLocaleString('vi-VN') + ' $';
                 updateTotal();
 
                 let post =  JSON.stringify({quantity: itemQuantity, _token: "{{ csrf_token() }}"})
@@ -678,7 +672,8 @@ button{
                     }
                 }
             } else {
-              let data =  JSON.stringify({ _token: "{{ csrf_token() }}"})
+                $.ajax()
+                let data =  JSON.stringify({ _token: "{{ csrf_token() }}"})
                 const url = button.getAttribute("data-urlDel");
                 let xhr = new XMLHttpRequest()
                 xhr.open('DELETE', url, true)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar</title>
+    <title>Shop</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/styles_1.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -83,7 +83,7 @@
                 <h4>Price</h4>
                 <ul>
                     <li><input type="checkbox" id="price1" name="price" value="0-10"  @if( $selectedPrice === '0-10') checked = "checked" @endif> <label for="price1">Under $10</label></li>
-                    <li><input type="checkbox" id="price2" name="price" value="10-20" @if( $selectedPrice === '10-20') checked = "checked" @endif> <label for="price1"> <label for="price2">$10 - $20</label></li>
+                    <li><input type="checkbox" id="price2" name="price" value="10-20" @if( $selectedPrice === '10-20') checked = "checked" @endif> <label for="price1"> <label for="price2">$10 - $20</label></label></li>
                     <li><input type="checkbox" id="price3" name="price" value="20-30" > <label for="price3">$20 - $30</label></li>
                     <div class="collapse" id="morePriceFilters">
                         <ul>
@@ -100,11 +100,10 @@
     </aside>
 
 
-    <div class="main-content col-12 col-md-9 mt-5 ml-2">
-
-        <div class="row row-cols-4 " id="book-list">
+    <div class="main-content mt-5 pt-5 ml-2">
+        <div class="grid" id="book-list">
                     @foreach ($books as $book)
-                        <div class="col book_item">
+                        <div class="col book-item bg-grey m-2 g-col-4" >
                         @if (!empty($book->images->first()->IMAGE_LINK))
                             <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
                         @else
@@ -118,7 +117,6 @@
                         </div>
                     @endforeach
         </div>
-
     </div>
 </div>
 
@@ -211,5 +209,6 @@
         });
     </script>
     @include('layout.footer')
+
 </body>
 </html>

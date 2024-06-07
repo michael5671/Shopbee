@@ -42,7 +42,7 @@ class PaymentController extends Controller
             ], 400);
         }
         $maxOrderId = DB::table('order')->max('ORDER_ID');
-        DB::statement("CALL create_order_items_and_clear_cart(?,?)",[$customer->CUSTOMER_ID,$maxOrderId]);
+        DB::statement("DELETE FROM CART_HAS WHERE CART_ID =?",[$customer->CART_ID]);
         return response()->json([
             'status' => "OK",
             'message' => "Đặt hàng thành công!"

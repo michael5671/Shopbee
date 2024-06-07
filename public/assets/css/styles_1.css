@@ -32,10 +32,10 @@ body {
     background-color: #111;
 }
 
-.row row-cols-4 {
-    max-height: 700px;
-    min-width: 600px;
-}
+/*.row row-cols-4 {*/
+/*    max-height: 700px;*/
+/*    min-width: 600px;*/
+/*}*/
 
 .product-card-img img {
     margin-top: 7%;
