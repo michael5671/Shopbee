@@ -1,7 +1,8 @@
 <!--==============HEADER==================-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="{{ asset('css/default-font.css') }}">
-<link rel="stylesheet" href="{{asset('frontend/css/home.css')}}">
+<link rel="stylesheet" href="{{asset('frontend/css/header.css')}}">
+
 <header class="header container-fluid">
     <ul class="nav navbar container">
         <li>
@@ -65,5 +66,67 @@
         </li>
         @endif
     </ul>
-
 </header>
+
+<script>
+        /*=============== SHOW SEARCH ===============*/
+        let dropdown = document.getElementById('dropdown');
+        let search = document.querySelector('.header .nav .search_box_hide');
+        document.querySelector('#search-btn').onclick = () =>{
+        search.classList.toggle('active');
+        dropdown.classList.remove('show');
+        }
+
+        /*=============== SHOW CART ===============*/
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartIcon = document.getElementById('cart-btn');
+            const dropdown = document.getElementById('dropdown');
+            const summary = document.querySelector('.summary p');
+
+            const toggleDropdown = (show) => {
+                dropdown.classList.toggle('show', show);
+                search.classList.remove('active');
+            };
+
+            cartIcon.addEventListener('mouseenter', () => toggleDropdown(true));
+            cartIcon.addEventListener('mouseleave', () => toggleDropdown(false));
+            dropdown.addEventListener('mouseenter', () => toggleDropdown(true));
+            dropdown.addEventListener('mouseleave', () => toggleDropdown(false));
+
+            const updateTotalProducts = () => {
+                const totalProducts = document.querySelectorAll('.cart-item').length;
+                const productText = totalProducts >= 2 ? 'products' : 'product';
+                summary.innerHTML = `Total ${totalProducts} ${productText}`;
+            };
+
+            document.querySelectorAll('.bxs-trash-alt').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const cartItem = event.target.closest('.cart-item');
+                    if (cartItem) {
+                        cartItem.classList.add('fade-out');
+                        setTimeout(() => {
+                            cartItem.remove();
+                            updateTotalProducts();
+                        }, 300);
+                    }
+                });
+            });
+
+            updateTotalProducts();
+        });
+        /*=================SHOW PROFILE==================*/
+        document.addEventListener('DOMContentLoaded', function () {
+            const userIcon = document.getElementById('user-btn');
+            const profile = document.getElementById('profile');
+            const toggleDropdown = (show) => {
+                profile.classList.toggle('show', show);
+                search.classList.remove('active');
+                dropdown.classList.remove('show');
+            };
+
+            userIcon.addEventListener('mouseenter', () => toggleDropdown(true));
+            userIcon.addEventListener('mouseleave', () => toggleDropdown(false));
+            profile.addEventListener('mouseenter', () => toggleDropdown(true));
+            profile.addEventListener('mouseleave', () => toggleDropdown(false));
+        });
+</script>

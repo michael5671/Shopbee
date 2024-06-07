@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
+    
     <div class="">
 
        @include('layout.header')
@@ -124,96 +125,6 @@
 <div class="">
             {{ $books->onEachSide(5)->links('shop.my-paginate') }}
 </div>
-
-    <!--==============FOOTER==================-->
-  <footer class="footer container-fluid text-center text-lg-start">
-    <!-- Grid container -->
-    <div class="container p-4">
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="outro col-lg-6 col-md-12 mb-4 mb-md-0">
-          <a href="#" class = "footer_brand h1">Verbify</a>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-            molestias. Fugiat pariatur maxime quis culpa corporis vitae.
-          </p>
-          <div class="icons footer_icons text-center fs-3">
-            <a href="#" class="btn-facebook mx-1">
-              <i class='bx bxl-facebook-circle'></i>
-            </a>
-            <a href="#" class="btn-github mx-1">
-              <i class='bx bxl-github'></i>
-            </a>
-            <a href="#" class="btn-figma mx-1">
-              <i class='bx bxl-figma'></i>
-            </a>
-          </div>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="contact col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5>Our Contact</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!">
-                <i class='bx bxs-home'></i>
-                University of Information Technology
-              </a>
-            </li>
-            <li>
-              <a href="#!">
-                <i class='bx bxs-phone'></i>
-                (+84) 8484 14 64646
-              </a>
-            </li>
-            <li>
-              <a href="#!">
-                <i class='bx bxl-gmail'></i>
-                verbify@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="links col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5>Links</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <a href="#">Shop</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-      </div>
-      <!--Grid row-->
-    </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class=" copyright p-2">
-      © All Rights Reserved - 2024 - Group 10
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!--=============== SCROLL UP ===============-->
-  <a href="#" class="scrollup shadow" id="scroll-up">
-    <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-  </a>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -299,6 +210,6 @@
               }
         });
     </script>
+    @include('layout.footer')
 </body>
-
 </html>
